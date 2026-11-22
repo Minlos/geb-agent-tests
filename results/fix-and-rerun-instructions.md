@@ -4,6 +4,20 @@ The goal is to measure whether the models complete the mail, file and device tas
 
 These instructions are for the computer that produced the Ollama runs. The repository already contains the grader corrections, an offline replay command, an explicit thinking setting and fuller API response logging. No paid API or GPU service is needed for this work.
 
+## Hardware comparison: Pavel and Philip
+
+| Component | Pavel | Philip's Dell benchmark computer |
+|---|---|---|
+| Computer | Laptop; model not provided | Dell G3 3590 |
+| CPU | Not provided | Intel Core i7-9750H; 6 cores, 12 threads |
+| System RAM | Not provided | 16 GB |
+| GPU | RTX 3060 Laptop | GTX 1660 Ti Max-Q |
+| GPU memory | 6 GB reported | 6 GB nominal |
+
+Pavel's specifications are from the shared Telegram screenshot. The Dell specifications and observed GPU placement are recorded in the [benchmark hardware comparison](2026-11-21-local-ollama.md#pavels-hardware-compared-with-philips-dell).
+
+The reported GPU-memory capacity is the same. In the Dell runs, Qwen 3.5 4B placed all main-model layers on the GPU, whereas Gemma 4 12B used both GPU and CPU memory. Different GPUs and different CPU/GPU placement affect what must be measured in a speed comparison; these records do not establish a hardware cause for the task failures. Keep model, quantization, runtime and generation settings fixed before comparing the two laptops. Pavel's CPU and RAM need to be supplied for a complete hardware comparison.
+
 ## 1. Update and verify the suite
 
 Run from the existing `geb-agent-tests` checkout. Preserve unrelated local changes; if Git cannot fast-forward, inspect the changes rather than resetting the checkout.

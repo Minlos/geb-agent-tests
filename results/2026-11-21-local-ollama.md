@@ -50,6 +50,22 @@ The [v0.1.2 replay scores](grader-audit.md#grader-v012-replay) include the confi
 
 The runs used a Dell G3 3590 laptop with an Intel Core i7-9750H (6 cores, 12 threads), 16 GB of RAM, and an NVIDIA GeForce GTX 1660 Ti Max-Q (6 GB nominal VRAM). The operating system was Ubuntu 24.04.4 LTS. Inference ran locally through Ollama with CUDA. Placement below is based on Ollama's layer-offload logs.
 
+### Pavel's hardware compared with Philip's Dell
+
+| Component | Pavel's reported setup | Philip's recorded benchmark setup |
+|---|---|---|
+| Computer | Laptop; exact model not provided | Dell G3 3590 |
+| CPU | Not provided | Intel Core i7-9750H; 6 cores, 12 threads |
+| System RAM | Not provided | 16 GB |
+| GPU | NVIDIA GeForce RTX 3060 Laptop | NVIDIA GeForce GTX 1660 Ti Max-Q |
+| GPU memory | 6 GB | 6 GB nominal |
+
+Pavel's column comes from the Telegram configuration screenshot Philip supplied. The Dell column uses the recorded hardware details for these runs. Pavel's CPU, RAM and exact laptop model remain unknown; do not infer them from the GPU.
+
+Both laptops have the same reported GPU-memory capacity, but different GPUs. That does not establish equal inference speed or equal available memory. In the Dell runs, Qwen 3.5 4B placed all 33 main-model layers on the GPU; Gemma 4 12B placed 25 of 49 on the GPU and used CPU memory for the remainder. The larger model therefore ran with a different CPU/GPU split on the same laptop.
+
+The evidence does not establish that the Dell's hardware caused the low task scores. The confirmed grading errors and Qwen thinking-setting effect are demonstrated separately in the [grader audit](grader-audit.md). A hardware speed comparison would require the same model artifact, quantization, runtime, context, prompts and generation settings on both computers. Pavel's reported token-generation rate and the Dell's total case times measure different things and should not be compared as a speed ratio.
+
 | Model and setting | v0.1.2 replay | GPU placement | Total case time |
 |---|---:|---|---:|
 | Gemma 4 12B | 15/16 | 25 of 49 main-model layers on GPU | 13m 19s |
