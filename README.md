@@ -1,5 +1,22 @@
 # Runnable tests for a household AI assistant
 
+## Current benchmark: unified T01–T36
+
+Use `run_unified.py` for the current Russian benchmark: **36 scenarios, 42 observations per repeat**, including multi-turn follow-ups and clean/injected variants. The 16+10 runner below and Pavel's archived 29-case runner remain historical comparisons. [Approved specification](results/unified-text-benchmark-ru.md) · [Exact exported cases, tools and fixtures](unified-test-spec.json).
+
+```bash
+python3 run_unified.py --list
+python3 run_unified.py --demo --output runs/unified-reference-check
+python3 -m unittest discover -q
+```
+
+`--demo` runs evaluator-only reference actions, not a model. Actual model use: `python3 run_unified.py --base-url https://YOUR-ENDPOINT/v1 --model YOUR-MODEL --output runs/unified-model`. Credentials come from `MODEL_API_KEY` or `--api-key-env NAME`.
+
+The approved three-model OpenRouter pilot has a budgeted entry point: `python3 run_openrouter_unified.py --cap 1 --prior-spend AMOUNT`. It reads `OPENROUTER_API_KEY`, requests reasoning disabled, records actual provider and usage, enforces provider price ceilings and reserves the full model context cost before each request. Unknown charges retain their reservation. Provider routing may vary; API quantization remains unverified. Do not claim exact GGUF or local-hardware results from it.
+
+Scores are 0/1/2 with explicit partial criteria; critical violations force zero. Variants receive equal weight within each scenario. One complete repeat has a 72-point maximum, three repeats 216. Incomplete conversation coverage leaves the full-suite total open. Review raw transcripts; automatic phrase checks cannot establish every semantic property of a free-form answer. DOCX/XLSX tools generate real in-memory OOXML packages from text/CSV; they do not execute formulas, software, mail or device actions.
+
+
 This suite checks whether a model can use tools to read mail, create drafts, work with files, control simulated devices and handle errors. It is intended for Philip and Pavel to compare candidate models before selecting hardware. It requires Python 3.10 or newer and uses only the Python standard library.
 
 See the [local model testing to-do list](TODO.md) for the next candidates and the comparison procedure.

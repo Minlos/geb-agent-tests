@@ -10,7 +10,7 @@ The [native Ollama adapter](../configurations/pavel-v2/adapters/run_ollama_nativ
 
 ## OpenRouter pilot
 
-The paid Gemma 4 31B endpoint passed both live smoke cases. Free Gemma attempts were rate-limited; a separate free Liquid probe passed MAIL-01 but HOME-02 and its isolated retry were rate-limited. See the [smoke results and all attempts](openrouter-smoke.md). Full paid API evaluation is deferred at Philip's request; [Russian hardware research](russian-hardware-gemma.md) identifies the local model shortlist.
+The paid Gemma 4 31B endpoint passed both live smoke cases. Free Gemma attempts were rate-limited; a separate free Liquid probe passed MAIL-01 but HOME-02 and its isolated retry were rate-limited. See the [smoke results and all attempts](openrouter-smoke.md). Three one-repeat API pilots are now authorized within $1 total; [Russian hardware research](russian-hardware-gemma.md) identifies the local model shortlist.
 
 For the prepared free smoke launcher, run `python3 openrouter_smoke.py` from the repository root, or double-click `OpenRouter Smoke.command` on macOS. It checks the current catalog for the exact free model and tool support, then runs MAIL-01 and HOME-02 once. With no environment key, Terminal prompts for it without echoing or saving it. Results and a catalog snapshot go into a new ignored `runs/` folder. `python3 openrouter_smoke.py --check` checks only the public catalog, with no credential or inference. There is no paid fallback. The launcher uses default provider routing and does not claim verified thinking control.
 
