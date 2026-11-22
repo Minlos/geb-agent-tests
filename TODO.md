@@ -1,5 +1,7 @@
 # Local model testing to-do list
 
+Publish each completed project deliverable on GitHub as soon as it is ready. Link the report, raw traces and runtime metadata where applicable. Label incomplete runs and record their coverage separately.
+
 Test on Philip's Dell G3 3590: i7-9750H, 16 GB RAM, GTX 1660 Ti Max-Q with 6 GB nominal VRAM. The purpose is to compare task completion, unsafe attempts and elapsed time using the same suite. Completed runs are published in the [extended benchmark report](results/extended-local-ollama.md).
 
 ## Models, in priority order
