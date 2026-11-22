@@ -29,8 +29,8 @@ Use the [runner instructions](README.md), [fix and rerun instructions](results/f
 
 1. [x] Publish [Pavel's verified bundle](configurations/pavel-v2) as a reproducibility configuration. All 743 checksums and 24 offline checks passed. The local Qwen3 4B Instruct 2507 GGUF has the same SHA-256 as Pavel's.
 2. [x] Publish the [crosswalk](results/pavel-v2-task-comparison.md) between both task lists and document differences in fixtures, simulator state, side-effect handling and grading.
-3. [ ] Run Pavel's 29 scored text scenarios with seeds 42, 43 and 44 on GPU-backed Ollama, one model at a time. Run the exact Qwen3 4B checkpoint first, then Gemma, then Qwen3.5 9B. Review tool calls, final state and replies against Pavel's rubric. Compare to his text-only 105/174 reference and report hardware, actual offload, runtime, context, execution coverage and raw traces.
-4. [ ] Review the [draft unified Russian text benchmark](results/unified-text-benchmark-ru.md) after the Gemma and Qwen3.5 retries. It proposes one runner, 36 scenarios and one scoring scheme, with source case IDs and no audio.
+3. [x] Publish the [priority model comparison on Pavel's 29 scenarios](results/pavel-v2-local-ollama.md). Both exact Qwen3 4B and Gemma 4 E2B completed the matched GPU profile. Gemma latest, 12B and Qwen3.5 9B have incomplete attempts with raw evidence.
+4. [x] Publish the [unified Russian text benchmark proposal](results/unified-text-benchmark-ru.md) based on the two source suites and the matched model results. One runner, 36 scenarios, one scoring scheme and no audio.
 
 ## Inkling-2-Mini-Unbound: conditional candidate
 
@@ -53,7 +53,7 @@ Compatibility requirements and file sizes above are publisher statements from th
 
 ## Matched Dell and OpenRouter runs
 
-- [ ] Run [the matched Dell profile](results/matched-local-openrouter-plan.md) on Gemma 4 E2B and exact-checkpoint Qwen3 4B, with Gemma first and one GPU model loaded at a time.
+- [x] Run [the matched Dell profile](results/matched-local-openrouter-plan.md) on Gemma 4 E2B and exact-checkpoint Qwen3 4B, with Gemma first and one GPU model loaded at a time.
 - [ ] Start the free OpenRouter smoke test as soon as an API key is available, then follow the full API stage above. Compare API and GPU-server results on the same cases, preserving separate provider/runtime and hardware details.
 
 ## Research after the core comparison and unified proposal
