@@ -43,3 +43,9 @@ Pavel forwarded [nokeepai/Inkling-2-Mini-Unbound-GGUF](https://huggingface.co/no
 - [ ] Record Inkling's actual thinking behavior and endpoint controls rather than assuming our Qwen `--no-thinking` option maps identically. The publisher says effort 0 can still produce brief thinking.
 
 Compatibility requirements and file sizes above are publisher statements from the linked model card, not a verified local installation or benchmark.
+
+## GPU server experiment
+
+- [x] Prepare a [bounded server test plan](results/server-test-plan.md): one 48 GB GPU, Inkling Q4 versus Q8, Qwen3.5:4b comparison, 16 baseline plus 10 advanced cases, and up to three repeats.
+- [ ] Agree the provider and proposed $5 total usage / four-hour limit before provisioning. Recheck the live rental and storage price.
+- [ ] Execute the plan, publish raw evidence and comparison, then terminate the instance and check retained storage charges.
