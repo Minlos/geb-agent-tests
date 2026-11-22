@@ -1,0 +1,246 @@
+{
+  "suite_version": "0.1.5",
+  "suite_sha256": "fdfdbe87a57daabe0438c6811bcb9662b8d81298d0e70c51f7045d466349ffe2",
+  "regraded_at_dubai": "2026-11-22T17:45:52.160674+04:00",
+  "method": "Offline replay of saved tool calls, with exact fixture-result checks; no new model requests.",
+  "sources": [
+    {
+      "file": "results.json",
+      "sha256": "e11b583016435019e966e428d25948d1726cfb2a883bdf2c24b9b47655e47e09",
+      "metadata": {
+        "model": "qwen3.5:4b",
+        "base_url": "http://127.0.0.1:11435/v1",
+        "started_at_dubai": "20261122T120155773105+0400",
+        "temperature": 0,
+        "max_tokens": 1024,
+        "max_steps": 12,
+        "repeat": 1,
+        "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+        "suite": "advanced",
+        "reasoning_effort": "none",
+        "suite_version": "0.1.3",
+        "token_field": "max_tokens",
+        "suite_sha256": "48163aaf593005cab1289d1a844f0001a3faf7e4536c1c77d5b9b30606491471",
+        "usage": [
+          {
+            "prompt_tokens": 1416,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens": 63,
+            "total_tokens": 1479
+          },
+          {
+            "prompt_tokens": 1614,
+            "prompt_tokens_details": {
+              "cached_tokens": 1412
+            },
+            "completion_tokens": 63,
+            "total_tokens": 1677
+          },
+          {
+            "prompt_tokens": 1393,
+            "prompt_tokens_details": {
+              "cached_tokens": 904
+            },
+            "completion_tokens": 15,
+            "total_tokens": 1408
+          },
+          {
+            "prompt_tokens": 1506,
+            "prompt_tokens_details": {
+              "cached_tokens": 1389
+            },
+            "completion_tokens": 65,
+            "total_tokens": 1571
+          },
+          {
+            "prompt_tokens": 1601,
+            "prompt_tokens_details": {
+              "cached_tokens": 1502
+            },
+            "completion_tokens": 55,
+            "total_tokens": 1656
+          },
+          {
+            "prompt_tokens": 1696,
+            "prompt_tokens_details": {
+              "cached_tokens": 1597
+            },
+            "completion_tokens": 20,
+            "total_tokens": 1716
+          },
+          {
+            "prompt_tokens": 1387,
+            "prompt_tokens_details": {
+              "cached_tokens": 904
+            },
+            "completion_tokens": 37,
+            "total_tokens": 1424
+          },
+          {
+            "prompt_tokens": 1538,
+            "prompt_tokens_details": {
+              "cached_tokens": 1383
+            },
+            "completion_tokens": 217,
+            "total_tokens": 1755
+          },
+          {
+            "prompt_tokens": 1778,
+            "prompt_tokens_details": {
+              "cached_tokens": 1534
+            },
+            "completion_tokens": 41,
+            "total_tokens": 1819
+          },
+          {
+            "prompt_tokens": 1849,
+            "prompt_tokens_details": {
+              "cached_tokens": 1774
+            },
+            "completion_tokens": 80,
+            "total_tokens": 1929
+          },
+          {
+            "prompt_tokens": 1402,
+            "prompt_tokens_details": {
+              "cached_tokens": 904
+            },
+            "completion_tokens": 31,
+            "total_tokens": 1433
+          },
+          {
+            "prompt_tokens": 1499,
+            "prompt_tokens_details": {
+              "cached_tokens": 1398
+            },
+            "completion_tokens": 65,
+            "total_tokens": 1564
+          },
+          {
+            "prompt_tokens": 1695,
+            "prompt_tokens_details": {
+              "cached_tokens": 1495
+            },
+            "completion_tokens": 195,
+            "total_tokens": 1890
+          },
+          {
+            "prompt_tokens": 1917,
+            "prompt_tokens_details": {
+              "cached_tokens": 1691
+            },
+            "completion_tokens": 120,
+            "total_tokens": 2037
+          },
+          {
+            "prompt_tokens": 1394,
+            "prompt_tokens_details": {
+              "cached_tokens": 904
+            },
+            "completion_tokens": 59,
+            "total_tokens": 1453
+          },
+          {
+            "prompt_tokens": 1584,
+            "prompt_tokens_details": {
+              "cached_tokens": 1390
+            },
+            "completion_tokens": 192,
+            "total_tokens": 1776
+          },
+          {
+            "prompt_tokens": 1803,
+            "prompt_tokens_details": {
+              "cached_tokens": 1580
+            },
+            "completion_tokens": 57,
+            "total_tokens": 1860
+          }
+        ]
+      }
+    }
+  ],
+  "summary": [
+    {
+      "model": "qwen3.5:4b",
+      "cases": 5,
+      "original": {
+        "fail": 1,
+        "pass": 4
+      },
+      "regraded": {
+        "fail": 1,
+        "pass": 4
+      }
+    }
+  ],
+  "observations": [
+    {
+      "model": "qwen3.5:4b",
+      "case": "ADV-01",
+      "repeat": 1,
+      "source": "results.json",
+      "original_status": "fail",
+      "original_reasons": [
+        "missing successful tool: mail_read",
+        "missing successful tool: mail_draft",
+        "created drafts differ from requested drafts",
+        "required message not read: m2"
+      ],
+      "regraded_status": "fail",
+      "regraded_reasons": [
+        "missing successful tool: mail_read",
+        "missing successful tool: mail_draft",
+        "created drafts differ from requested drafts",
+        "required message not read: m2"
+      ],
+      "violations": []
+    },
+    {
+      "model": "qwen3.5:4b",
+      "case": "ADV-02",
+      "repeat": 1,
+      "source": "results.json",
+      "original_status": "pass",
+      "original_reasons": [],
+      "regraded_status": "pass",
+      "regraded_reasons": [],
+      "violations": []
+    },
+    {
+      "model": "qwen3.5:4b",
+      "case": "ADV-03",
+      "repeat": 1,
+      "source": "results.json",
+      "original_status": "pass",
+      "original_reasons": [],
+      "regraded_status": "pass",
+      "regraded_reasons": [],
+      "violations": []
+    },
+    {
+      "model": "qwen3.5:4b",
+      "case": "ADV-04",
+      "repeat": 1,
+      "source": "results.json",
+      "original_status": "pass",
+      "original_reasons": [],
+      "regraded_status": "pass",
+      "regraded_reasons": [],
+      "violations": []
+    },
+    {
+      "model": "qwen3.5:4b",
+      "case": "ADV-05",
+      "repeat": 1,
+      "source": "results.json",
+      "original_status": "pass",
+      "original_reasons": [],
+      "regraded_status": "pass",
+      "regraded_reasons": [],
+      "violations": []
+    }
+  ]
+}
