@@ -2,6 +2,8 @@
 
 Philip selected Gemma 4 31B Q4, Qwen3.8-27B and Qwen3.6-35B-A3B. The first stage is one unified T01–T36 OpenRouter pilot per checkpoint (42 observations with variants), with a **$1 aggregate limit**. The second stage is an exact-GGUF local deployment check. API and GGUF results must remain separate.
 
+The [API pilots are now recorded](unified-openrouter-pilot.md). Gemma and Qwen3.8 completed every conversation; Qwen3.6 hit one scenario's turn limit. No model passed every scenario. Exact local GGUF testing remains outstanding.
+
 ## Exact local artifacts
 
 | Model | Selected weight file | Weight size, decimal GB |

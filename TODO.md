@@ -6,7 +6,8 @@
 
 - [x] Compare [four budget tiers and all six Pavel spreadsheet candidates](results/hardware-tiers-and-pavel-models.md), with [CSV comparison](results/pavel-models-by-budget.csv) and [Russian retail research](results/russian-hardware-gemma.md).
 - [x] Run paid Gemma 4 31B MAIL-01 and HOME-02 smoke checks: both passed; [evidence and API cost](results/openrouter-smoke.md).
-- [ ] Run the approved unified T01–T36 API pilots for Gemma 31B, Qwen3.8-27B and Qwen3.6-35B-A3B within $1 total, carrying forward earlier spend/reservations. Do not treat API scores as exact GGUF Q4 measurements.
+- [x] Execute the approved unified T01–T36 API pilots for Gemma 31B, Qwen3.8-27B and Qwen3.6-35B-A3B within $1 total, carrying forward earlier spend/reservations. [Results](results/unified-openrouter-pilot.md): Gemma and Qwen3.8 completed all conversations; Qwen3.6 has one unfinished scenario. API scores are not exact GGUF Q4 measurements.
+- [x] Record [ADR 0001: specialize smaller models for narrow household tasks](docs/adr/0001-specialized-small-models.md). Training has not started; define an experiment and a new unseen holdout before evaluating adoption.
 - [ ] Before hardware purchase, obtain the final complete quote and benchmark the exact local artifact and runtime. Gemma 31B Q4 has much lower memory needs than BF16; local quality and latency remain to be measured.
 
 Publish each completed project deliverable on GitHub as soon as it is ready. Link the report, raw traces and runtime metadata where applicable. Label incomplete runs and record their coverage separately.

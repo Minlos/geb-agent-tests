@@ -2,6 +2,8 @@
 
 ## Current benchmark: unified T01–T36
 
+[Architecture decision: specialize smaller models for narrow household tasks](docs/adr/0001-specialized-small-models.md) · [Three-model unified API pilot and raw evidence](results/unified-openrouter-pilot.md).
+
 Use `run_unified.py` for the current Russian benchmark: **36 scenarios, 42 observations per repeat**, including multi-turn follow-ups and clean/injected variants. The 16+10 runner below and Pavel's archived 29-case runner remain historical comparisons. [Approved specification](results/unified-text-benchmark-ru.md) · [Exact exported cases, tools and fixtures](unified-test-spec.json).
 
 ```bash
