@@ -1,0 +1,70 @@
+[
+  {
+    "case": "FILE-01",
+    "reasoning_effort": null,
+    "finish_reason": "stop",
+    "content": "",
+    "tool_calls": null,
+    "separate_text_fields": {
+      "reasoning": 402
+    },
+    "usage": {
+      "prompt_tokens": 1482,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens": 120,
+      "total_tokens": 1602
+    }
+  },
+  {
+    "case": "FILE-01",
+    "reasoning_effort": "none",
+    "finish_reason": "stop",
+    "content": "Согласно договору №12:\n\n**Стороны:**\n- ООО Альфа-Тест\n- ООО Бета-Тест\n\n**Сумма договора:** 120 000 рублей\n\n**Дата окончания договора:** 30.11.2026\n\n**Штраф за просрочку:** В документе не указано, что штраф за просрочку предусмотрен.",
+    "tool_calls": null,
+    "separate_text_fields": {},
+    "usage": {
+      "prompt_tokens": 1480,
+      "prompt_tokens_details": {
+        "cached_tokens": 970
+      },
+      "completion_tokens": 91,
+      "total_tokens": 1571
+    }
+  },
+  {
+    "case": "SHOP-01",
+    "reasoning_effort": null,
+    "finish_reason": "stop",
+    "content": "",
+    "tool_calls": null,
+    "separate_text_fields": {
+      "reasoning": 117
+    },
+    "usage": {
+      "prompt_tokens": 1561,
+      "prompt_tokens_details": {
+        "cached_tokens": 970
+      },
+      "completion_tokens": 36,
+      "total_tokens": 1597
+    }
+  },
+  {
+    "case": "SHOP-01",
+    "reasoning_effort": "none",
+    "finish_reason": "stop",
+    "content": "В корзину добавлен ржаной хлеб (ID: p2) стоимостью 90 рублей. Это самый дешёвый ржаной хлеб, который соответствует условию \"не выше 100 рублей\".",
+    "tool_calls": null,
+    "separate_text_fields": {},
+    "usage": {
+      "prompt_tokens": 1555,
+      "prompt_tokens_details": {
+        "cached_tokens": 1049
+      },
+      "completion_tokens": 44,
+      "total_tokens": 1599
+    }
+  }
+]
