@@ -64,7 +64,7 @@ Pavel's column comes from the Telegram configuration screenshot Philip supplied.
 
 Both laptops have the same reported GPU-memory capacity, but different GPUs. That does not establish equal inference speed or equal available memory. In the Dell runs, Qwen 3.5 4B placed all 33 main-model layers on the GPU; Gemma 4 12B placed 25 of 49 on the GPU and used CPU memory for the remainder. The larger model therefore ran with a different CPU/GPU split on the same laptop.
 
-The evidence does not establish that the Dell's hardware caused the low task scores. The confirmed grading errors and Qwen thinking-setting effect are demonstrated separately in the [grader audit](grader-audit.md). A hardware speed comparison would require the same model artifact, quantization, runtime, context, prompts and generation settings on both computers. Pavel's reported token-generation rate and the Dell's total case times measure different things and should not be compared as a speed ratio.
+The two sets of runs use different models, tests and scoring methods, so they do not establish which laptop performs better or how hardware affects task scores on either laptop. A controlled comparison would require the same model artifact, quantization, runtime, context, prompts, generation settings and scoring rules on both computers. Pavel's reported token-generation rate and the Dell's total case times also measure different things and should not be compared as a speed ratio. The confirmed grading errors and Qwen thinking-setting effect in our runs are documented separately in the [grader audit](grader-audit.md).
 
 | Model and setting | v0.1.2 replay | GPU placement | Total case time |
 |---|---:|---|---:|

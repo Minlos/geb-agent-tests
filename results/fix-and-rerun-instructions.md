@@ -16,7 +16,7 @@ These instructions are for the computer that produced the Ollama runs. The repos
 
 Pavel's specifications are from the shared Telegram screenshot. The Dell specifications and observed GPU placement are recorded in the [benchmark hardware comparison](2026-11-21-local-ollama.md#pavels-hardware-compared-with-philips-dell).
 
-The reported GPU-memory capacity is the same. In the Dell runs, Qwen 3.5 4B placed all main-model layers on the GPU, whereas Gemma 4 12B used both GPU and CPU memory. Different GPUs and different CPU/GPU placement affect what must be measured in a speed comparison; these records do not establish a hardware cause for the task failures. Keep model, quantization, runtime and generation settings fixed before comparing the two laptops. Pavel's CPU and RAM need to be supplied for a complete hardware comparison.
+The reported GPU-memory capacity is the same. In the Dell runs, Qwen 3.5 4B placed all main-model layers on the GPU, whereas Gemma 4 12B used both GPU and CPU memory. The two sets of runs use different models, tests and scoring methods, so they do not establish which laptop performs better or how hardware affects task scores on either laptop. Keep the model, quantization, runtime, context, prompts, generation settings and scoring rules fixed for a controlled comparison. Pavel's CPU and RAM need to be supplied for a complete hardware comparison.
 
 ## 1. Update and verify the suite
 
