@@ -35,5 +35,12 @@ I replayed the recorded tool calls into a fresh simulator for each case. The too
 | Qwen 3.5 4B | 10/16 | 10/16 |
 | Ministral 3B | 6/16 | 7/16 |
 | Llama 3.2 3B | 1/16 | 1/16 |
+| Granite 4 3B | 7/16 | 7/16 |
 
 The replay changed only Ministral’s FILE-01 result. The other three confirmed false negatives above still fail under v0.1.1. Manually accepting only those confirmed cases would yield 15/16 for Gemma 4 12B and 13/16 for Gemma 4 latest. These are limited corrections and do not represent a fresh grading of every model answer.
+
+## Qwen follow-up
+
+All six original Qwen failures had empty final content. I repeated the final API request for FILE-01 and SHOP-01 with the same recorded message history, tool definitions, and output limit. On both requests, the default produced a `stop` response with text in the separate reasoning field and empty final content. Setting `reasoning_effort: "none"` produced a complete final answer for both cases, including the correct contract details and the price of the item already in the cart.
+
+This isolates a thinking-mode effect on those two final requests. It does not establish the outcome of rerunning the complete cases or the full suite with thinking disabled. The benchmark scores still use the original runs. [Diagnostic results](raw/qwen-final-turn-diagnostic.json) · [Ollama API setting](https://docs.ollama.com/api/openai-compatibility#v1chatcompletions)
