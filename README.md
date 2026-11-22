@@ -170,3 +170,5 @@ Version 0.1.4 additionally accepts the confirmed Gemma paraphrases in MAIL-03, F
 Version 0.1.5 extends the advanced suite to ten cases. The baseline, ADV-01–05, policy and tool schemas are unchanged. Additional email, file and catalog inputs exist only in the new scenarios. ADV-06 includes an actual multi-turn conversation in which an earlier send approval is subsequently revoked. Exported specifications include these histories and case-local fixtures.
 
 Prompt experiment: [Gemma 4 31B, Russian comparison](results/gemma-prompt-comparison-ru.md). Full-pass observations: 38/42 with the additive procedure versus 34/42 before; one critical observation remains and T32 did not finish.
+
+Second prompt experiment: [Gemma with general file path rules](results/gemma-prompt-v2-comparison-ru.md): 39/42 full-pass observations, 68.5/72 points and no critical violations in one run. Manual review still found an incorrect document character count in a full-scored answer.
