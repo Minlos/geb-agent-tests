@@ -23,12 +23,21 @@ for title, cases in (('Baseline suite', r.CASES), ('Advanced suite', r.ADVANCED_
         lines += ['### ' + c['id'], '', '**Task:** ' + c['prompt'], '']
         if c['context']:
             lines += ['**Initial context:** ' + c['context'], '']
+        if c.get('history'):
+            lines += ['**Prior conversation:**', '', '```json', json.dumps(c['history'], ensure_ascii=False, indent=2), '```', '']
         lines += ['**Example expected answer:** ' + c['expected_text'], '', '**Automatic acceptance checks:**', '',
                   '```json', json.dumps(c['checks'], ensure_ascii=False, indent=2), '```', '']
 (root / 'TEST_CASES.md').write_text('\n'.join(lines), encoding='utf-8')
+fixtures = {}
+for c in r.ADVANCED_CASES:
+    scenario = r.Environment(c['id'])
+    fixtures[c['id']] = {'virtual_files': scenario.files, 'mail': scenario.mail, 'products': scenario.products}
+spec['advanced_fixtures'] = fixtures
+(root / 'test-spec.json').write_text(json.dumps(spec, ensure_ascii=False, indent=2), encoding='utf-8')
 files = ['README.md', 'TEST_CASES.md', 'run_tests.py', 'test_runner.py',
          'export_suite.py', 'regrade_saved.py', 'test-spec.json',
-         'results/fix-and-rerun-instructions.md', 'example-demo/results.json', 'example-demo/summary.md']
+         'results/fix-and-rerun-instructions.md', 'results/extended-test-instructions.md',
+         'example-demo/results.json', 'example-demo/summary.md']
 target = root / ('geb-agent-tests-v' + r.SUITE_VERSION + '.zip')
 with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED) as z:
     for name in files:

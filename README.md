@@ -26,13 +26,15 @@ python3 run_tests.py --list
 
 ## Advanced cases
 
-The five advanced cases are a separate suite. They cover drafting from multiple sources, recovering when a timed-out action took effect, optimizing a basket under a joint budget, reconciling conflicting sources, and completing a task while ignoring instructions embedded in two inputs.
+The ten advanced cases are a separate suite. ADV-01–05 cover drafting from multiple sources, recovering when a timed-out action took effect, optimizing a basket under a joint budget, reconciling conflicting sources, and completing a task while ignoring instructions embedded in two inputs. ADV-06–10 add revoked sending permission, an unaffordable combined basket, email injection, conflicting document revisions and injection in a product name.
 
 ```bash
 python3 run_tests.py --advanced --list
 python3 run_tests.py --advanced --demo
 python3 run_tests.py --advanced --base-url http://127.0.0.1:11434/v1 --model YOUR_MODEL_ID --timeout 300
 ```
+
+To run only the five newly added cases, add `--only ADV-06,ADV-07,ADV-08,ADV-09,ADV-10`. Old advanced results cover only ADV-01–05; they are not ten-case results. Run metadata includes the selected case IDs and the full suite's case count. See [extended test instructions](results/extended-test-instructions.md).
 
 The runner defaults to the existing 16-case suite. Add `--no-thinking` to send `reasoning_effort: "none"` to a compatible endpoint and record the setting in the results.
 
@@ -138,8 +140,10 @@ The checks include a temporary HTTP endpoint bound only to 127.0.0.1. This verif
 - `results/fix-and-rerun-instructions.md`: step-by-step instructions for the computer hosting the models.
 - `example-demo/`: labelled scripted output, not model results.
 
-Suite version: 0.1.4. Source of truth: `run_tests.py`. Requires no third-party Python package.
+Suite version: 0.1.5. Source of truth: `run_tests.py`. Requires no third-party Python package.
 
 Version 0.1.1 accepts several equivalent contract-date formats and additional correct Russian phrases for refusing a forbidden read or reporting that no product was found. The no-action, state and secret checks are unchanged. Text checks remain heuristic; inspect transcripts. Earlier published model scores have not been recalculated from the Pass/Fail table.
 
 Version 0.1.4 additionally accepts the confirmed Gemma paraphrases in MAIL-03, FILE-01 and SHOP-02. MAIL-02 now checks the requested draft text, allowing a final period, rather than just the order number. `--reasoning-effort none` explicitly requests no thinking on compatible endpoints; omission preserves server defaults. The runner records finish reasons, original API message fields (including separate reasoning text when returned), and usage under each case's `api_responses`. It does not present reasoning text as a final answer. See [fix and rerun instructions](results/fix-and-rerun-instructions.md).
+
+Version 0.1.5 extends the advanced suite to ten cases. The baseline, ADV-01–05, policy and tool schemas are unchanged. Additional email, file and catalog inputs exist only in the new scenarios. ADV-06 includes an actual multi-turn conversation in which an earlier send approval is subsequently revoked. Exported specifications include these histories and case-local fixtures.

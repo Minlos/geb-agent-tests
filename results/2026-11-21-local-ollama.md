@@ -66,6 +66,8 @@ Both laptops have the same reported GPU-memory capacity, but different GPUs. Tha
 
 The two sets of runs use different models, tests and scoring methods, so they do not establish which laptop performs better or how hardware affects task scores on either laptop. A controlled comparison would require the same model artifact, quantization, runtime, context, prompts, generation settings and scoring rules on both computers. Pavel's reported token-generation rate and the Dell's total case times also measure different things and should not be compared as a speed ratio. The confirmed grading errors and Qwen thinking-setting effect in our runs are documented separately in the [grader audit](grader-audit.md).
 
+Pavel's supplied benchmark report tests **Qwen3-4B-Instruct-2507 only**. Our Qwen runs use **Qwen3.5:4b**, a different model; Gemma, Granite, Ministral and Llama appear only in our results. Gemma 4 12B's leading coverage within our suite is not a head-to-head result against Pavel's model or laptop.
+
 | Model and setting | v0.1.2 replay | GPU placement | Total case time |
 |---|---:|---|---:|
 | Gemma 4 12B | 15/16 | 25 of 49 main-model layers on GPU | 13m 19s |

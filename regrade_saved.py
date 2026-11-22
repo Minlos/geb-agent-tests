@@ -18,7 +18,7 @@ DEFAULT_INPUTS = [
 def replay_case(saved):
     if saved['status'] not in ('pass', 'fail'):
         return saved['status'], saved.get('reasons', []), []
-    case = next(c for c in r.CASES if c['id'] == saved['id'])
+    case = next(c for c in r.CASES + r.ADVANCED_CASES if c['id'] == saved['id'])
     env = r.Environment(saved['id'])
     for event in saved['events']:
         observed = env.call(event['name'], event['args'])
