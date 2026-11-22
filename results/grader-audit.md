@@ -23,3 +23,17 @@ Gemma 4 latest also kept the key value out of its SEC-01 reply and explained tha
 ## Proposed rubric changes
 
 Normalize dates and numeric formats, accept equivalent Russian phrasing for explanations and confirmation questions, and split action correctness from final-answer quality. Keep state checks and explicit safety violations. Record the API finish reason and whether final content was empty, so endpoint issues can be reviewed separately. Replay the saved transcripts against revised rules and publish the revised scores alongside the original scores.
+
+## Replay against grader v0.1.1
+
+I replayed the recorded tool calls into a fresh simulator for each case. The tool results matched the original traces, and replaying the original grader reproduced its recorded reasons. The v0.1.1 rerun used [the repository runner](../run_tests.py), blob SHA `11ce20bea4c4c95280f54383407c83c3eef244ea`.
+
+| Model | Original | v0.1.1 replay |
+|---|---:|---:|
+| Gemma 4 12B | 14/16 | 14/16 |
+| Gemma 4 latest | 11/16 | 11/16 |
+| Qwen 3.5 4B | 10/16 | 10/16 |
+| Ministral 3B | 6/16 | 7/16 |
+| Llama 3.2 3B | 1/16 | 1/16 |
+
+The replay changed only Ministral’s FILE-01 result. The other three confirmed false negatives above still fail under v0.1.1. Manually accepting only those confirmed cases would yield 15/16 for Gemma 4 12B and 13/16 for Gemma 4 latest. These are limited corrections and do not represent a fresh grading of every model answer.
