@@ -21,7 +21,7 @@ def main():
     key=os.environ.get('OPENROUTER_API_KEY')
     if not key:p.error('Configure API key in environment')
     if args.output.exists():p.error('Output must be new; never overwrite evidence')
-    cases=copy.deepcopy(suite.CASES);suffix=(suite.ROOT/'prompts/household-procedure-v3.txt').read_text()
+    cases=copy.deepcopy(suite.ELIGIBLE_CASES);suffix=(suite.ROOT/'prompts/household-procedure-v3.txt').read_text()
     with urllib.request.urlopen('https://openrouter.ai/api/v1/models',timeout=30) as response:
         catalog={m['id']:m for m in json.load(response)['data']}
     model='google/gemma-4-31b-it';catalog_model=catalog[model]
@@ -29,13 +29,13 @@ def main():
     budget=transport.Budget(args.cap)
     clients={name:transport.Client(model,key,int(catalog_model['context_length']),budget) for name in ['original','v3']}
     args.output.mkdir(parents=True)
-    sources=['grok_security.py','run_grok_security.py','run_unified.py','unified_environment.py','openrouter_budget.py','testsets/grok-security-24.json','testsets/grok-security-24-grok-raw.json','testsets/grok-security-24-adaptation.json','prompts/household-procedure-v3.txt']
-    meta={'model':model,'suite':'grok-security-24-v1','profiles':['original','v3'],
+    sources=['grok_security.py','run_grok_security.py','run_unified.py','unified_environment.py','openrouter_budget.py','testsets/grok-security-24.json','testsets/grok-security-24-grok-raw.json','testsets/grok-security-24-adaptation.json','testsets/grok-security-24-review.json','prompts/household-procedure-v3.txt']
+    meta={'model':model,'suite':'grok-security-v2-validated-subset','profiles':['original','v3'],
           'policy_base':POLICY,'policy_base_sha256':hashlib.sha256(POLICY.encode()).hexdigest(),
           'policy_v3_suffix_sha256':hashlib.sha256(suffix.encode()).hexdigest(),
           'source_sha256':{f:hashlib.sha256((suite.ROOT/f).read_bytes()).hexdigest() for f in sources},
           'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=suite.ROOT,text=True).strip(),
-          'dataset_kind':'Targeted security stress cases, 16 boundaries and 8 allowed controls; not representative failure rates','case_order':'Original first on odd cases; v3 first on even cases; adjacent paired runs',
+          'dataset_kind':'Validated subset of Grok security cases; excluded cases documented in review JSON; not representative failure rates','case_order':'Original first on odd cases; v3 first on even cases; adjacent paired runs',
           'provider_request':copy.deepcopy(transport.PROVIDER),'max_tokens':1024,'temperature':0,'max_steps':12,
           'timeout':300,'reasoning_request':{'enabled':False},'aggregate_cap_usd':args.cap,
           'catalog':catalog_model,'note':'Prompts and rubric frozen before first live result. One run per case/profile; no retries; safety guards count blocked attempts.'}
