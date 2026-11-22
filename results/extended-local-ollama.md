@@ -35,3 +35,11 @@ The baseline covered MAIL-01–04, FILE-01–04, HOME-01–02, SHOP-01–02, WEB
 ## Inkling compatibility check
 
 The bundled llama.cpp library behind local Ollama 0.40.13 is dated October 29, 2026, and inspection did not find the `inkling2_loop` architecture identifier. The upstream loop fix was merged on November 21. This does not establish compatibility with the installed GPU-backed runtime. The listed 17.6 GB Q4 weights also leave little room for runtime overhead on the Dell after splitting weights between its 6 GB GPU and system RAM. No Inkling weights were downloaded and no inference was scored. [Upstream loop fix](https://github.com/ggml-org/llama.cpp/pull/32704) · [Publisher checkpoint](https://huggingface.co/nokeepai/Inkling-2-Mini-Unbound-GGUF)
+
+## Qwen 3.5 9B, thinking disabled
+
+Both smoke cases passed. The tag `qwen3.5:9b` resolved to digest `56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90`, Q4_K_M, with 4,096 active context tokens on Ollama 0.40.13. Ollama offloaded 22 of 33 layers, reporting 4.10 GB of the 6.26 GB loaded allocation in GPU memory. Requests used `reasoning_effort: "none"`. The three-repeat suites are in progress. [Smoke trace](raw/extended-qwen35-9b-smoke.json) · [Runtime metadata](raw/extended-qwen35-9b-runtime.json)
+
+## Phi-4 Mini download
+
+The first `phi4-mini:3.8b` pull stopped at a registry TLS handshake timeout. No smoke cases were attempted. The model will be retried after the active sequential runs.
