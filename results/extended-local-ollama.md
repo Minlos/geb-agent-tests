@@ -15,7 +15,7 @@ Runs in this report use the 16 baseline cases and the ten advanced cases from su
 
 The two smoke cases returned structured tool calls. MAIL-01 stopped after search without reading the message. HOME-02 attempted to turn off a TV before asking which TV was intended. The simulator blocked the action. Both smoke cases failed on task behavior.
 
-This is a checkpoint comparison with Pavel's reported Qwen3 model. His exact artifact, quantization, runtime and runnable test code are still needed for a reproduction.
+The local Q4_K_M GGUF has the same SHA-256 as Pavel’s original weights. These scores are from the GitHub cases. The [Pavel V2 Ollama comparison](pavel-v2-local-ollama.md) uses Pavel’s frozen tasks and rubric.
 
 ### Three-repeat results
 
