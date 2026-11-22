@@ -2,6 +2,8 @@
 
 This suite checks whether a model can use tools to read mail, create drafts, work with files, control simulated devices and handle errors. It is intended for Philip and Pavel to compare candidate models before selecting hardware. It requires Python 3.10 or newer and uses only the Python standard library.
 
+See the [local model testing to-do list](TODO.md) for the next candidates and the comparison procedure.
+
 The suite contains 16 scenarios with fixed synthetic data, exact prompts and automatic checks. Each scenario starts in a fresh environment. No real accounts or home devices are connected. The model receives tool descriptions and task data through tool results; reference actions and expected answers are kept outside its conversation.
 
 ## Start here: check the runner without a model
