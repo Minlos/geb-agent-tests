@@ -58,3 +58,4 @@ Compatibility requirements and file sizes above are publisher statements from th
 ## Research after the core comparison and unified proposal
 
 - [x] Survey [related benchmarks](results/related-benchmarks.md) and document [coverage gaps for Russian-speaking users](results/pavel-v2-benchmark-gaps-ru.md). The proposed benchmark uses Russian text, a single runner and a single scoring scheme.
+- [x] Publish the [integrated GEB test report](results/geb-test-report.md) covering both source suites, measured results and external evaluation methods.
