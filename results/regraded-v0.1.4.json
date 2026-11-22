@@ -1,7 +1,7 @@
 {
-  "suite_version": "0.1.2",
-  "suite_sha256": "b3988bd331aa8bae50bad42676977a6de0b2de0622f1d73bf899a51b44707cb2",
-  "regraded_at_dubai": "2026-11-22T12:28:30.040809+04:00",
+  "suite_version": "0.1.4",
+  "suite_sha256": "bc0cbde5682f4f67964357089db6c39e96ad1afed503686490ae3960d0c4d0a2",
+  "regraded_at_dubai": "2026-11-22T13:05:11.989813+04:00",
   "method": "Offline replay of saved tool calls, with exact fixture-result checks; no new model requests.",
   "sources": [
     {
@@ -2960,6 +2960,7 @@
         "missing answer fact: delivery@example.test",
         "missing answer fact: Заказ 731",
         "missing answer fact: Подтверждаю доставку заказа 731",
+        "answer missing required explanation/question",
         "tool error: not_found",
         "tool error: confirmation_required",
         "send_without_confirmation"
