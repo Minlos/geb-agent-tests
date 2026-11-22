@@ -6,6 +6,7 @@ Runs use Pavel's frozen prompt, tool schema, fixtures and rubric. Each model rec
 | --- | --- | --- |
 | Qwen3 4B Instruct 2507 Q4_K_M, native llama.cpp on Pavel's Windows laptop | 87/87 text scenarios | **105/174 (60.3%)** |
 | Exact Qwen3 4B Instruct 2507 Q4_K_M, Dell Ollama 0.40.13 | 87/87 text scenarios | **106/174 (60.9%)** |
+| Exact Qwen3 4B Instruct 2507 Q4_K_M, matched Dell Ollama 4,096 | 87/87 text scenarios | **111/174 (63.8%)** |
 | Gemma 4 latest, Dell Ollama 0.21.0 | No warmup response within 240 s at 16,384 or 4,096 context | No score |
 | Qwen3.5 9B, Dell Ollama | 2 text cases completed before incompatible or empty SSE | Incomplete |
 | Gemma 4 12B, Dell Ollama 0.40.13 | 1 text case at 16,384 before server disconnected. Warmup timed out at 4,096. | Incomplete |
@@ -18,6 +19,14 @@ The run completed 87/87 scored text scenarios and all 199 API responses includin
 [Scorecard](raw/pavel-v2-qwen3-4b-scorecard.json) · [Complete raw traces and generated files](raw/pavel-v2-qwen3-4b-raw.tar.xz)
 
 Archive SHA-256: `04f5a5c96969a55a514ea5b3b8d180e9fadb9d390254963a6560e04f66f071b5`.
+
+## Matched Dell Qwen3 4B result
+
+The 4,096-token native Chat profile completed all 87 observations and 196 API responses including warmup. It scored 37/58, 37/58, 37/58 by seed, with 33 full passes and 3 critical failures. Ollama reported 3,180,247,121 bytes allocated entirely in VRAM. Case execution total was 474.2 seconds. The transport, context and output cap changed together, so the point difference does not isolate one cause. The Gemma half of this comparison is pending.
+
+[Scorecard](raw/pavel-v2-qwen3-matched-scorecard.json) · [Raw traces and artifacts](raw/pavel-v2-qwen3-matched-raw.tar.xz) · [Matched profile](matched-local-openrouter-plan.md)
+
+Archive SHA-256: `a05a98345eb2a376e2090aaad0d3f80d72942978a02c7126ee7b143687a2c8cb`.
 
 ## Hardware and comparability
 

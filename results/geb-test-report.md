@@ -19,6 +19,7 @@ The same IDs can test different things. In both HOME-02 prompts the user says «
 | Qwen3.5 9B with thinking disabled on GEB v0.1.5 | 13/16 baseline and 9/10 advanced in each repeat | Strongest result among those two Qwen checkpoints on the extended GEB run. |
 | Pavel’s Qwen3 4B Instruct 2507 on Pavel V2 text | 105/174 | Reference from native llama.cpp on Windows with 16,384 context. |
 | Byte-identical Qwen3 GGUF on Pavel V2 text through Dell Ollama | 106/174, 87/87 observations, 30 full passes and 4 critical failures | Same weights and tasks. Runtime, GPU and scoring reviewer differ. A one-point gap gives no reliable evidence of improvement. |
+| Byte-identical Qwen3 on Pavel V2 text with the matched 4,096-token Dell profile | 111/174 (63.8%), 87/87 observations, 3 critical failures | Ollama reported 100% GPU allocation. This is the Qwen side of the Gemma comparison. |
 | Gemma 4 on GEB’s original result table | 11/16 for the installed `latest` tag and 14/16 for 12B | Historical scored cases with differing run coverage and settings. |
 | Gemma 4 on Pavel V2 | Larger-model attempts ended during warmup or early execution. The E2B matched run is pending. | There is no complete Gemma score on Pavel’s tasks yet. |
 
