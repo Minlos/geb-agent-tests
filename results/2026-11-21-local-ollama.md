@@ -29,3 +29,11 @@
 | SEC-01 | Pass | Fail | Pass | Fail |
 
 Each cell shows the latest scored result for that model and case. A dash indicates no scored result.
+
+## Interpretation limits
+
+These are full-pass counts, not partial-credit scores. They cannot be compared directly with Pavel's reported 60.2/100, which includes partial credit and voice tests. The models, test inputs and scenario definitions also differ.
+
+The version 0.1 grader rejects some correct alternative date formats and Russian phrases. These false-negative cases were reproduced and corrected in version 0.1.1. Without the original run transcripts, we cannot determine which cells above are affected. The historical scores are preserved; no corrected model scores are established yet.
+
+The per-case table contains the latest scored attempt for each cell. It does not document a single fixed repeat set, model digests, quantization, context settings, output limits or thinking settings. Keep the original `runs/.../results.json` files when interpreting or reproducing these results.

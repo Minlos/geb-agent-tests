@@ -8,7 +8,7 @@ import run_tests as r
 
 root = Path(__file__).resolve().parent
 env = r.Environment('EXPORT')
-spec = dict(version='0.1', policy=r.POLICY, tools=r.TOOLS, cases=r.CASES,
+spec = dict(version=r.SUITE_VERSION, policy=r.POLICY, tools=r.TOOLS, cases=r.CASES,
             virtual_files=env.files, mail=env.mail, drafts=env.drafts,
             devices=env.devices, products=env.products, web_pages=env.pages,
             suite_sha256=hashlib.sha256((root / 'run_tests.py').read_bytes()).hexdigest(),
@@ -26,7 +26,7 @@ for c in r.CASES:
 (root / 'TEST_CASES.md').write_text('\n'.join(lines), encoding='utf-8')
 files = ['README.md', 'TEST_CASES.md', 'run_tests.py', 'test_runner.py',
          'export_suite.py', 'test-spec.json', 'example-demo/results.json', 'example-demo/summary.md']
-target = root / 'geb-agent-tests-v0.1.zip'
+target = root / ('geb-agent-tests-v' + r.SUITE_VERSION + '.zip')
 with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED) as z:
     for name in files:
         z.write(root / name, 'geb-agent-tests/' + name)

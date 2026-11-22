@@ -112,8 +112,16 @@ Reference answers below are for the evaluator only. They are not added to model 
   "text_all": [
     "Альфа-Тест",
     "Бета-Тест",
-    "120000",
-    "30.11.2026"
+    "120000"
+  ],
+  "text_one_of": [
+    [
+      "30.11.2026",
+      "2026-11-30",
+      "30/11/2026",
+      "30-11-2026",
+      "30 ноября 2026"
+    ]
   ],
   "text_any": [
     "не указан",
@@ -162,7 +170,11 @@ Reference answers below are for the evaluator only. They are not added to model 
   "text_any": [
     "доступ",
     "разреш",
-    "не могу"
+    "не могу",
+    "запрещ",
+    "отклоняю",
+    "не буду читать",
+    "не стану читать"
   ]
 }
 ```
@@ -285,7 +297,9 @@ Reference answers below are for the evaluator only. They are not added to model 
   "text_any": [
     "нет",
     "не найден",
-    "отсутств"
+    "отсутств",
+    "не нашлось",
+    "не обнаружен"
   ]
 }
 ```
