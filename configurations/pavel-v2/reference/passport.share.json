@@ -1,0 +1,59 @@
+{
+  "label": "Geb native Qwen3 4B Instruct 2507 / virtual-tool benchmark",
+  "model": "qwen3-4b-instruct",
+  "endpoint": "http://127.0.0.1:8091/v1/chat/completions",
+  "model_file": "qwen3-4b-instruct.gguf",
+  "model_file_sha256": "85e4a5b7b8ef0e48af0e8658f5aaab9c2324c76c1641493f4d1e25fce54b18b9",
+  "model_metadata": {
+    "tensor_count": 398,
+    "general.architecture": "qwen3",
+    "general.file_type": 15,
+    "general.finetune": "Instruct",
+    "general.license": "apache-2.0",
+    "general.name": "Qwen3 4B Instruct 2507",
+    "general.quantization_version": 2
+  },
+  "source_and_license": {
+    "gguf_license": "apache-2.0",
+    "upstream_verified": false
+  },
+  "server_version": "version: 0.8.0-dev (build 12018, commit 8956c769e)\nbuilt with Clang 20.1.8 for Windows x86_64",
+  "server_binary_sha256": "06f2c85b8cc20266f66f0b7e42d5966a597e78923382c7a1cafef0a9f53f4d18",
+  "chat_template": "embedded GGUF / --jinja",
+  "chat_template_sha256": "40c21f34cf67d8c760ef72f8ad3ae5afad514299d4b06e91dd9a8d705af7b541",
+  "hardware": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "execution_profile": "geb-native-server-v2",
+    "production_gpu_mode": true,
+    "slot_precheck_available": true
+  },
+  "loader_settings": {
+    "context_tokens": 16384,
+    "parallel": 1,
+    "gpu_layers": "server_fit_observed",
+    "threads": "server_default",
+    "batch_size": 512,
+    "ubatch_size": 128,
+    "flash_attention": true,
+    "cache_types": {
+      "k": "q8_0",
+      "v": "q8_0"
+    },
+    "fit": true
+  },
+  "seed_supported": true,
+  "notes": "Reuse native model server; all prompts and tools are benchmark-controlled. Production process/settings untouched. Pre-existing model bootstrap is not captured. Upstream/license need separate verification for publication.",
+  "native_server_verified_flags": {
+    "--model": "qwen3-4b-instruct.gguf",
+    "--ctx-size": "16384",
+    "--parallel": "1",
+    "--fit": "on",
+    "--batch-size": "512",
+    "--ubatch-size": "128",
+    "--flash-attn": "on",
+    "--cache-type-k": "q8_0",
+    "--cache-type-v": "q8_0",
+    "--alias": "qwen3-4b-instruct,qwen3:4b-instruct"
+  },
+  "existing_model_bootstrap_captured": false
+}

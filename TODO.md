@@ -25,10 +25,12 @@ Use the [runner instructions](README.md), [fix and rerun instructions](results/f
 
 ## Pavel comparison and unified benchmark
 
-1. [ ] Publish Pavel's verified bundle under `configurations/pavel-v2` as a reproducibility configuration. All 743 checksums and 24 offline checks passed. The local Qwen3 4B Instruct 2507 GGUF has the same SHA-256 as Pavel's.
-2. [ ] Publish the crosswalk between both task lists and document differences in fixtures, simulator state, side-effect handling and grading.
+1. [x] Publish [Pavel's verified bundle](configurations/pavel-v2) as a reproducibility configuration. All 743 checksums and 24 offline checks passed. The local Qwen3 4B Instruct 2507 GGUF has the same SHA-256 as Pavel's.
+2. [x] Publish the [crosswalk](results/pavel-v2-task-comparison.md) between both task lists and document differences in fixtures, simulator state, side-effect handling and grading.
 3. [ ] Run Pavel's 29 scored text scenarios with seeds 42, 43 and 44 on GPU-backed Ollama, one model at a time. Run the exact Qwen3 4B checkpoint first, then Gemma, then Qwen3.5 9B. Review tool calls, final state and replies against Pavel's rubric. Compare to his text-only 105/174 reference and report hardware, actual offload, runtime, context, execution coverage and raw traces.
 4. [ ] Based on both comparisons, propose one unified text-only benchmark with one runner, one task list and one scoring scheme. Keep source case IDs for traceability and omit audio from the unified benchmark.
+
+5. [x] Survey [similar projects and relevant benchmarks](results/related-benchmarks.md).
 
 ## Inkling-2-Mini-Unbound: conditional candidate
 
