@@ -5,10 +5,18 @@ Runs use Pavel's frozen prompt, tool schema, fixtures and rubric. Each model rec
 | Model and environment | Observations | Pavel rubric |
 | --- | --- | --- |
 | Qwen3 4B Instruct 2507 Q4_K_M, native llama.cpp on Pavel's Windows laptop | 87/87 text scenarios | **105/174 (60.3%)** |
-| Exact Qwen3 4B Instruct 2507 Q4_K_M, Dell Ollama 0.40.13 | Running | Review pending |
-| Gemma 4 latest, Dell Ollama | Queued second | Pending |
-| Qwen3.5 9B, Dell Ollama | Queued third | Pending |
-| Gemma 4 12B, Dell Ollama | Queued after the priority models | Pending |
+| Exact Qwen3 4B Instruct 2507 Q4_K_M, Dell Ollama 0.40.13 | 87/87 text scenarios | **106/174 (60.9%)** |
+| Gemma 4 latest, Dell Ollama | Warmup request timed out at 240 s | No score |
+| Qwen3.5 9B, Dell Ollama | 2 text cases completed before incompatible or empty SSE | Incomplete |
+| Gemma 4 12B, Dell Ollama | 1 text case completed before server disconnected | Incomplete |
+
+## Exact Qwen3 4B result
+
+The run completed 87/87 scored text scenarios and all 199 API responses including warmup. The score by seed was 34/58, 36/58, 36/58. The review found 30 full passes and 4 critical failures. Case execution total: 879.3 seconds. Pavel's result was 105/174 under his own review. The one-point difference is within the uncertainty of a single trace review and different server conditions.
+
+[Scorecard](raw/pavel-v2-qwen3-4b-scorecard.json) · [Complete raw traces and generated files](raw/pavel-v2-qwen3-4b-raw.tar.xz)
+
+Archive SHA-256: `04f5a5c96969a55a514ea5b3b8d180e9fadb9d390254963a6560e04f66f071b5`.
 
 ## Hardware and comparability
 
