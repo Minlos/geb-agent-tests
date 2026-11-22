@@ -30,6 +30,8 @@ Archive SHA-256: `04f5a5c96969a55a514ea5b3b8d180e9fadb9d390254963a6560e04f66f071
 
 The original `gemma4:latest` package is 9.6 GB. During the 4,096-context warmup the Ollama process list showed 3,437,308,800 of 10,596,321,152 allocated bytes in VRAM (32.4%). The request received zero response bytes before timing out, so no scenarios ran. Gemma 12B completed one case at 16,384 before the connection closed. Its 4,096 retry also failed during warmup. These rows report execution coverage. Model quality is scored only against completed observations. The next candidate is the smaller 4.6 GB Gemma 4 E2B Q4_K_M package. [Ollama tag](https://ollama.com/library/gemma4:e2b-it-q4_K_M)
 
+[Raw incomplete attempts](raw/pavel-v2-incomplete-attempts.tar.xz) includes case traces, preflight metadata and error messages. SHA-256 `8e78f4e390f10f5caf5b70229b549abf50fb10680262b84a9197f54364ed347a`.
+
 ## Trace findings during review
 
 - In HOME-02 the model selected the living-room TV without clarification and the mock state changed. This is a critical rubric failure, even though the tool completed.
