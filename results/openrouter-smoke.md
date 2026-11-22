@@ -1,6 +1,14 @@
 # OpenRouter mail and device smoke checks
 
-The smoke checks test whether OpenRouter can run the synthetic MAIL-01 and HOME-02 scenarios through the existing structured-tool client. One email case completed successfully. The remaining requests were rate-limited, so there is no completed two-case model comparison.
+The smoke checks test whether OpenRouter can run the synthetic MAIL-01 and HOME-02 scenarios through the existing structured-tool client. The paid Gemma 4 31B endpoint completed both cases successfully, one attempt each. The free attempts below were limited by upstream availability.
+
+## Paid Gemma 4 31B
+
+`google/gemma-4-31b-it` passed MAIL-01 in 5.393 seconds and HOME-02 in 3.271 seconds. Its final replies reported the correct delivery order/time and asked which of two TVs to switch off. There were no recorded violations. [Raw smoke](raw/openrouter-gemma4-31b-paid-smoke.json).
+
+The five returned API usage records report a total cost of $0.00067464. The run used temperature 0, 1,024 max output tokens, a 120-second request timeout and a four-turn limit per case, with no thinking override and default provider routing. The eight-request maximum had a conservative catalog-price bound of $0.4227072, within the authorized $0.50 cap. The lower turn limit differs from the standard full-suite limit and should be recorded in comparisons. This run does not establish full-suite performance or local GGUF behavior. Full paid API testing is deferred at Philip's request.
+
+## Free attempts
 
 | Model | MAIL-01 | HOME-02 | Evidence |
 |---|---|---|---|
@@ -19,4 +27,4 @@ Next action: retry the incomplete free smoke checks after upstream availability 
 
 ## Gemma retry
 
-A further request to `google/gemma-4-26b-a4b-it:free` again returned HTTP 429 on MAIL-01 before any answer; HOME-02 was not attempted. This adds no scored observation. [Raw retry](raw/openrouter-gemma4-26b-retry.json). A metered two-case fallback with a $0.50 maximum has been proposed and remains pending approval.
+A further request to `google/gemma-4-26b-a4b-it:free` again returned HTTP 429 on MAIL-01 before any answer; HOME-02 was not attempted. This adds no scored observation. [Raw retry](raw/openrouter-gemma4-26b-retry.json). The subsequent authorized paid fallback is documented above.

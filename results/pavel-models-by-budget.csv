@@ -1,0 +1,7 @@
+﻿Pavel order,Model,Weight format,Weights decimal GB (approx),100k RTX3060 12GB,200k RTX5060Ti 16GB,300k shared64GB,400-500k shared128GB,Source
+1,Nemotron 3.5 Super VL 120B-A12B,NVFP4 GGUF,76.92,No practical full-GPU fit,No practical full-GPU fit,Not a practical memory target,Conditional memory candidate; AMD backend unverified,https://huggingface.co/ggml-org/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-GGUF
+2,Qwen3.8-27B,UD-Q4_K_M,16.56,Offload required,Too tight for planned full GPU loading,Memory candidate; speed unmeasured,Memory candidate; speed unmeasured,https://huggingface.co/unsloth/Qwen3.8-27B-GGUF
+3,gpt-oss-120b,MXFP4 GGUF,63.39,Unsuitable target,Unsuitable target,Too tight to recommend,Conditional memory candidate; AMD backend unverified,https://huggingface.co/ggml-org/gpt-oss-120b-GGUF
+4,Qwen3.5-122B-A10B,Q4_K_M split files,76.54,Unsuitable target,Unsuitable target,Not a practical memory target,Conditional memory candidate; backend and speed unmeasured,https://huggingface.co/unsloth/Qwen3.5-122B-A10B-GGUF
+5,Gemma 4 31B-it,Q4_K_M,18.69,Offload required,Offload required,Memory candidate; speed unmeasured,Memory candidate; speed unmeasured,https://huggingface.co/lmstudio-community/gemma-4-31B-it-GGUF
+6,Qwen3.6-35B-A3B,UD-Q4_K_M,22.13,Offload required,Offload required,Memory candidate; speed unmeasured,Memory candidate; speed unmeasured,https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF

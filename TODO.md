@@ -1,5 +1,12 @@
 # Local model testing to-do list
 
+## Hardware budget and current API status
+
+- [x] Compare [four budget tiers and all six Pavel spreadsheet candidates](results/hardware-tiers-and-pavel-models.md), with [CSV comparison](results/pavel-models-by-budget.csv) and [Russian retail research](results/russian-hardware-gemma.md).
+- [x] Run paid Gemma 4 31B MAIL-01 and HOME-02 smoke checks: both passed; [evidence and API cost](results/openrouter-smoke.md).
+- [ ] Full paid API suites: **deferred at Philip's explicit request**. Do not treat completed smoke checks as full-suite coverage.
+- [ ] Before hardware purchase, obtain the final complete quote and benchmark the exact local artifact and runtime. Gemma 31B Q4 has much lower memory needs than BF16; local quality and latency remain to be measured.
+
 Publish each completed project deliverable on GitHub as soon as it is ready. Link the report, raw traces and runtime metadata where applicable. Label incomplete runs and record their coverage separately.
 
 Test on Philip's Dell G3 3590: i7-9750H, 16 GB RAM, GTX 1660 Ti Max-Q with 6 GB nominal VRAM. The purpose is to compare task completion, unsafe attempts and elapsed time using the same suite. Completed runs are published in the [extended benchmark report](results/extended-local-ollama.md).
