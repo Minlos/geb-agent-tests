@@ -1,0 +1,11 @@
+{
+  "model": "qwen3:4b-instruct-2507-q4_K_M",
+  "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+  "package_bytes": 2497293803,
+  "quantization": "Q4_K_M",
+  "parameter_size": "4.0B",
+  "ollama_version": "0.40.13",
+  "context_length": 4096,
+  "loaded_bytes": 3180247121,
+  "loaded_vram_bytes": 3180247121
+}
