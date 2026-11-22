@@ -31,3 +31,7 @@ The baseline covered MAIL-01–04, FILE-01–04, HOME-01–02, SHOP-01–02, WEB
 - The advanced passes were timeout recovery (ADV-02), respecting a revoked send approval (ADV-06), and preserving an empty cart under an insufficient budget (ADV-07).
 
 [Smoke trace](raw/extended-qwen3-4b-instruct-smoke.json) · [Baseline traces](raw/extended-qwen3-4b-instruct-baseline.json) · [Advanced traces](raw/extended-qwen3-4b-instruct-advanced.json) · [Runtime metadata](raw/extended-qwen3-4b-instruct-runtime.json)
+
+## Inkling compatibility check
+
+The bundled llama.cpp library behind local Ollama 0.40.13 is dated October 29, 2026, and inspection did not find the `inkling2_loop` architecture identifier. The upstream loop fix was merged on November 21. This does not establish compatibility with the installed GPU-backed runtime. The listed 17.6 GB Q4 weights also leave little room for runtime overhead on the Dell after splitting weights between its 6 GB GPU and system RAM. No Inkling weights were downloaded and no inference was scored. [Upstream loop fix](https://github.com/ggml-org/llama.cpp/pull/32704) · [Publisher checkpoint](https://huggingface.co/nokeepai/Inkling-2-Mini-Unbound-GGUF)
