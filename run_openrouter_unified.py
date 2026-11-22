@@ -31,14 +31,17 @@ def main():
     parser.add_argument('--api-key-env', default='OPENROUTER_API_KEY')
     parser.add_argument('--output', type=Path)
     parser.add_argument('--only', help='Optional exact scenario IDs for a preserved supplemental run')
+    parser.add_argument('--models', nargs='+', default=MODELS, help='Exact OpenRouter model IDs')
+    parser.add_argument('--policy-suffix', type=Path, help='UTF-8 instructions appended to the existing policy')
     args = parser.parse_args()
+    suffix = args.policy_suffix.read_text(encoding='utf-8') if args.policy_suffix else None
     key = os.environ.get(args.api_key_env)
     if not key:
         parser.error('Configure the API key environment variable; never pass the key as an argument')
     budget = Budget(args.cap, args.prior_spend)
     with urllib.request.urlopen('https://openrouter.ai/api/v1/models', timeout=30) as response:
         catalog = {m['id']: m for m in json.load(response)['data']}
-    for model in MODELS:
+    for model in args.models:
         if model not in catalog or not {'tools', 'tool_choice', 'reasoning'}.issubset(catalog[model]['supported_parameters']):
             parser.error('Catalog does not advertise required model capabilities: ' + model)
     stamp = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
@@ -54,7 +57,7 @@ def main():
                'openrouter_budget.py', 'run_openrouter_unified.py']}
     interrupted = False
     try:
-        for model in MODELS:
+        for model in args.models:
             m = catalog[model]
             out = folder / model.replace('/', '--')
             out.mkdir()
@@ -64,13 +67,15 @@ def main():
                     'case_ids': [c['id'] for c in selected], 'variant_counts': variants,
                     'started_at_utc': stamp, 'source_sha256': hashes,
                     'max_tokens': 1024, 'max_steps': 12, 'timeout': 300,
+                    'policy_suffix': suffix,
+                    'policy_suffix_sha256': hashlib.sha256(suffix.encode()).hexdigest() if suffix is not None else None,
                     'temperature': 0, 'reasoning_request': {'enabled': False},
                     'provider_request': PROVIDER, 'quantization': 'Unknown API artifact; not an exact Q4 GGUF run',
                     'aggregate_cap_usd': str(budget.cap), 'initial_spend_or_reserved_usd': args.prior_spend}
             results = []
             print('MODEL', model, flush=True)
             for case in cases:
-                result = runner.run_case(case, client)
+                result = runner.run_case(case, client, policy_suffix=suffix)
                 result['repeat'] = 1
                 results.append(result)
                 meta['aggregate_spent_or_reserved_usd'] = str(budget.spent)

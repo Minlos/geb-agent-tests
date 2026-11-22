@@ -13,6 +13,24 @@ class GradingChecks(unittest.TestCase):
         return {'turns': [{'answer': answer, 'snapshot': state}],
                 'events': [], 'violations': [], 'initial_snapshot': state}
 
+    def test_prompt_experiment_preserves_base_policy_and_case_inputs(self):
+        from unified_cases import CASES, POLICY
+        import copy
+        runner = self.runner()
+        case = next(runner.expanded_cases(CASES))
+        before = copy.deepcopy(case)
+        class Capture:
+            def __call__(self, messages, tools):
+                self.messages = messages
+                return {'role': 'assistant', 'content': 'Нет данных'}
+        base, candidate = Capture(), Capture()
+        runner.run_case(case, base)
+        runner.run_case(case, candidate, policy_suffix='ПРОЦЕДУРА')
+        self.assertEqual(base.messages[0]['content'], POLICY)
+        self.assertEqual(candidate.messages[0]['content'], POLICY + '\nПРОЦЕДУРА')
+        self.assertEqual(base.messages[1:], candidate.messages[1:])
+        self.assertEqual(case, before)
+
     def test_state_required_even_when_assistant_claims_success(self):
         r = self.runner()
         case = {'full': [{'type': 'file', 'path': 'workspace/total.txt', 'exact': '2000'}],

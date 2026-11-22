@@ -211,11 +211,11 @@ def expanded_cases(cases):
                 yield variant
 
 
-def run_case(case, client, max_steps=12):
+def run_case(case, client, max_steps=12, policy_suffix=None):
     from unified_environment import Environment, TOOLS
     from unified_cases import POLICY
     env = Environment(case)
-    messages = [{'role': 'system', 'content': POLICY}]
+    messages = [{'role': 'system', 'content': POLICY + ('\n' + policy_suffix if policy_suffix else '')}]
     messages.extend(copy.deepcopy(case.get('history', [])))
     if case.get('context'):
         messages.append({'role': 'system', 'content': case['context']})
