@@ -9,3 +9,5 @@ verification-run/
 *.zip
 progress.md
 .DS_Store
+
+sealed-holdouts/

@@ -172,3 +172,5 @@ Version 0.1.5 extends the advanced suite to ten cases. The baseline, ADV-01–05
 Prompt experiment: [Gemma 4 31B, Russian comparison](results/gemma-prompt-comparison-ru.md). Full-pass observations: 38/42 with the additive procedure versus 34/42 before; one critical observation remains and T32 did not finish.
 
 Second prompt experiment: [Gemma with general file path rules](results/gemma-prompt-v2-comparison-ru.md): 39/42 full-pass observations, 68.5/72 points and no critical violations in one run. Manual review still found an incorrect document character count in a full-scored answer.
+
+Latest prompt check: [Gemma v3 Russian report](results/gemma-prompt-v3-comparison-ru.md), 41/42 automated full passes and 70/72 points; manual caveats remain. [Independent Grok candidate-set manifest](results/holdout-manifests/grok-independent-20261122.json): 12 locally sealed, uninspected cases; not yet executable or semantically validated.

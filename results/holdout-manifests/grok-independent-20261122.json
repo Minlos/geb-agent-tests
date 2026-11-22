@@ -1,0 +1,23 @@
+{
+  "model": "x-ai/grok-4.7",
+  "provider": "xAI",
+  "case_count": 12,
+  "generation_id": "gen-1795376760-cB4KPFd0WMKVSqmP6wDG",
+  "recorded_at_utc": "2026-11-22T19:52:03.960893+00:00",
+  "cases_sha256": "e13ffba87a2aef3f5568acd6bef35831a14e11a271bd7f0d5f5695ff23a33e7b",
+  "request_sha256": "76958c29472cb5ae3d9d3434f16cc0b64e717bb37ac41d5266b8b3b1f06b2be7",
+  "response_sha256": "681641efa39a67980b3660b24a3f3face592c2e9b464bee924afeaec188c2960",
+  "frozen_prompt_v3_sha256": "ffcb7de76c97d5b8624531f5d6abfbddc850bb5831509d2bbb70845f34179bab",
+  "reported_cost_usd": 0.136446,
+  "requested_max_tokens": 8192,
+  "reported_completion_tokens": 22421,
+  "reported_reasoning_tokens": 14822,
+  "announced_generation_cap_usd": "0.08",
+  "announced_cap_exceeded": true,
+  "cost_bound_issue": "Output-token limit did not bound billed reasoning; further generation disabled until a total-cost bound is verified",
+  "status": "Generated candidates; JSON structure checked only; content not inspected or used for prompt revisions; not yet executable or semantically validated",
+  "brief_provenance": "Standalone capabilities and neutral contract only; no conversation, candidate prompts, existing cases, failures or scores sent",
+  "storage": "Case contents retained locally in gitignored sealed-holdouts/; only this manifest and neutral brief are public",
+  "execution": "Not supplied to Gemma or run against any candidate; v3 frozen before generation",
+  "earlier_attempt": "First request rejected HTTP 400; no case content received; no usage receipt available"
+}
