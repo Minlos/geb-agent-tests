@@ -44,16 +44,17 @@ Pavel forwarded [nokeepai/Inkling-2-Mini-Unbound-GGUF](https://huggingface.co/no
 
 Compatibility requirements and file sizes above are publisher statements from the linked model card, not a verified local installation or benchmark.
 
-## GPU server experiment
+## OpenRouter and GPU server experiments
 
-- [x] Prepare a [bounded server test plan](results/server-test-plan.md): one 48 GB GPU, Inkling Q4 versus Q8, Qwen3.5:4b comparison, 16 baseline plus 10 advanced cases, and up to three repeats.
+- [x] Prepare the [combined plan](results/server-test-plan.md): OpenRouter task comparison first, then one 48 GB GPU for Inkling Q4 versus Q8 and a Qwen3.5:4b comparison. Both use 16 baseline plus 10 advanced cases, with up to three repeats.
+- [ ] Complete the OpenRouter smoke, then the full suites. Start with the free endpoint in the [API pilot](results/matched-local-openrouter-plan.md); agree a separate $5 API usage cap before metered inference. Verify provider routing and thinking controls, and record costs.
 - [ ] Agree the provider and proposed $5 total usage / four-hour limit before provisioning. Recheck the live rental and storage price.
 - [ ] Execute the plan, publish raw evidence and comparison, then terminate the instance and check retained storage charges.
 
 ## Matched Dell and OpenRouter runs
 
 - [ ] Run [the matched Dell profile](results/matched-local-openrouter-plan.md) on Gemma 4 E2B and exact-checkpoint Qwen3 4B, with Gemma first and one GPU model loaded at a time.
-- [ ] Start the free OpenRouter smoke test as soon as an API key is available. Record cloud results alongside the same task set when both tracks are ready.
+- [ ] Start the free OpenRouter smoke test as soon as an API key is available, then follow the full API stage above. Compare API and GPU-server results on the same cases, preserving separate provider/runtime and hardware details.
 
 ## Research after the core comparison and unified proposal
 

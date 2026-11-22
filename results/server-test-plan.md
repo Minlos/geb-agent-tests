@@ -1,6 +1,34 @@
-# GPU server experiment for household assistant tests
+# OpenRouter and GPU server experiments for household assistant tests
 
 The experiment asks whether Inkling can complete our mail, file, shopping and device tasks reliably, and whether Q8 improves on Q4 enough to justify its memory use. Philip can use the results to decide which models deserve a longer trial. This is a proposed run, not a completed benchmark or a server reservation.
+
+## Two stages
+
+Start with **OpenRouter** to compare task completion with little setup. Then use a **rented GPU server** to test the exact GGUF files, quantization, memory and speed. Both stages remain in the plan. Inkling's exact-file experiment can proceed even if OpenRouter does not offer that model.
+
+| Stage | Question | Proposed usage limit |
+|---|---|---|
+| 1. OpenRouter | Which available open-weight models complete our tasks reliably? | Free smoke first; up to $5 for approved metered inference |
+| 2. GPU server | How do exact Inkling Q4 and Q8 files perform, and what hardware do they need? | Up to $5 total usage and four hours |
+
+The combined proposed usage limit is $10 if both paid stages are approved. Funding deposits, taxes and storage can affect the cash required; check them before spending. Planning does not start either paid stage. API results do not establish local memory needs or throughput, and API quantization labels do not identify an exact GGUF file.
+
+## Stage 1: OpenRouter
+
+Use the [matched Dell and OpenRouter plan](matched-local-openrouter-plan.md) for the initial command and model IDs. Recheck availability, prices and structured-tool support immediately before running. Start with its free Gemma endpoint, then the listed Qwen3.5 9B metered candidate if approved. These checkpoints differ from Pavel's Qwen3 4B. Add at most one further open-weight candidate with plausible self-hosting memory requirements; document those requirements before including it. A free endpoint is a useful capability comparison even if it is too large for the intended home hardware.
+
+1. Supply a dedicated API key via `OPENROUTER_API_KEY` in the local environment. For metered runs, set a non-resetting $5 key spending cap and verify it before requests. Account deposits are separate from inference usage. [OpenRouter key limits](https://openrouter.ai/docs/api/api-reference/api-keys/create-a-new-api-key).
+2. Run MAIL-01 and HOME-02; inspect structured calls and tool results. If transport and tool integration work, retain behavioral failures and continue the pilot rather than requiring a perfect smoke score.
+3. Run the same 16 baseline and 10 advanced cases as stage 2, one repeat first and two additional repeats within the approved budget. Preserve all attempts. Use the same suite commit, grader, prompts, tool schemas, temperature, output cap and timeout across the comparison; record unsupported settings explicitly.
+4. Record exact model ID, actual provider, timestamp, request IDs, available usage/cost data and thinking settings. Prefer a fixed provider with fallbacks disabled for a controlled comparison. The current runner does not expose OpenRouter's `provider` routing object; configure and verify routing through a supported preset or add and validate that support before claiming a provider-pinned run. Otherwise label results as default routing and record the provider when available. [Provider routing](https://openrouter.ai/docs/guides/routing/provider-selection).
+5. Verify thinking controls against the chosen endpoint. The runner's top-level `reasoning_effort` option is not proof that OpenRouter and its provider honor the request. If control is unverified, label thinking as unknown and do not call it a matched non-thinking run.
+6. Export raw JSON and an API results table with pass counts, unsafe attempts, empty/truncated responses, rate-limit/errors, elapsed time and actual cost. Record missing provider metadata as unknown. Rate-limit failures remain missing observations, separate from task failures.
+
+All API fixtures are synthetic. Run inference on the existing computer; renting a server is unnecessary for this stage. Pavel's 29-case suite is a separate comparison with its own runner and rubric. The proposed unified 36-case benchmark is not substituted until implemented and verified.
+
+## Stage 2: exact GGUF and hardware experiment
+
+Use the server procedure below after the API pilot, or to resolve exact-file questions the API cannot answer. Keep API and server results in separate rows. Select a promising API model for later self-hosting only after checking its weights, license and memory needs against the 400,000-ruble installation budget; a 48 GB rental is an experimental resource, not a validated home purchase.
 
 ## Hardware and spending
 
@@ -20,7 +48,7 @@ Use temporary storage and export evidence before terminating the instance. A sto
 
 Use [the publisher's exact Inkling GGUF files](https://huggingface.co/nokeepai/Inkling-2-Mini-Unbound-GGUF): `Inkling-2-Mini-Unbound-Q4_K_M.gguf` and `Inkling-2-Mini-Unbound-Q8_0.gguf`. Record repository revision and file hashes. Pin a CUDA llama.cpp build that includes the loop fix referenced in the card (PR #32704); check the build and template rather than assuming a bundled runtime supports it.
 
-For Qwen, preserve the Dell model digest, quantization and Ollama version/settings where possible. If a different runtime is needed, label that comparison as a combined hardware/runtime change. Do not attribute any score difference solely to the GPU. This run does not reproduce Pavel's private test suite.
+For Qwen, preserve the Dell model digest, quantization and Ollama version/settings where possible. If a different runtime is needed, label that comparison as a combined hardware/runtime change. Do not attribute any score difference solely to the GPU. These 26 cases are separate from Pavel's supplied 29-case suite and do not reproduce its scores.
 
 ## Execution order
 

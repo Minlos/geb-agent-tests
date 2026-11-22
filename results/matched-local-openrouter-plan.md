@@ -26,3 +26,9 @@ python3 run_tests.py \
 ```
 
 Review the two traces for real structured tool calls and valid final state before expanding to the text suite. Record rate limits as missing observations. For a paid run, set a dedicated key spending cap and record the provider and price. The key must stay out of GitHub, logs and chat.
+
+## OpenRouter and GPU server sequence
+
+Follow the [combined API and GPU server plan](server-test-plan.md). OpenRouter is the first stage for task comparisons; a rented 48 GB GPU is the second stage for Inkling Q4/Q8 and measured memory/speed. The stages have separate proposed $5 usage limits, pending approval before paid execution.
+
+After the two-case API smoke, run all 16 baseline and all 10 advanced cases once, then add two repeats within budget. Use the same suite commit, grader and request limits as the server comparison; preserve all failures. Keep Pavel's 29-case runner and rubric separate. Record provider routing, actual cost and verified thinking behavior; the current client does not expose provider-pinning controls, and its Qwen thinking option must not be assumed to work identically through OpenRouter. Do not describe an API model as the exact server GGUF without artifact evidence.
