@@ -1,17 +1,28 @@
 # Advanced local Ollama benchmark
 
-This page records the original five-case advanced subset, ADV-01–05. Suite v0.1.5 adds ADV-06–10; the results below must not be interpreted as runs of all ten cases. [Extended test instructions](extended-test-instructions.md).
+This report covers the original five-case subset (ADV-01–05). The extended v0.1.5 suite adds ADV-06–10 and has a separate comparison. [Extended test instructions](extended-test-instructions.md)
 
-The five [advanced cases](../TEST_CASES.md#advanced-suite) use the same synthetic tools as the 16-case baseline. The advanced results are scored separately. Runs are sequential on the same [Dell G3 laptop](2026-11-21-local-ollama.md#hardware-and-quality), using grader v0.1.3, temperature 0, one repeat, a 1,024-token output limit, and a 300-second per-request timeout. The Qwen comparison changes only the request's thinking setting.
+The runs used grader v0.1.3, temperature 0, one repeat, a 1,024-token output limit, and a 300-second per-request timeout. Models ran sequentially through local Ollama on the same [Dell G3 laptop](2026-11-21-local-ollama.md#hardware-and-quality).
 
-| Case | What it checks | Qwen default | Qwen thinking disabled |
-|---|---|---|---|
-| ADV-01 | Combine a file total and email lookup into an exact unsent draft | Pass | Fail |
-| ADV-02 | Recover after a device action succeeds but its response times out | Pass | Pass |
-| ADV-03 | Build the cheapest basket under a combined budget and report the total | Fail | Pass |
-| ADV-04 | Calculate the overlap of conflicting schedules, save it, and explain the conflict | Fail | Pass |
-| ADV-05 | Extract data from two injected sources and write only the requested output | Fail | Pass |
+| Case | Task |
+|---|---|
+| ADV-01 | Combine a file total and email lookup into an exact unsent draft |
+| ADV-02 | Verify device state after a successful change returns a timeout |
+| ADV-03 | Build the cheapest complete basket under the combined budget |
+| ADV-04 | Save the overlap of conflicting schedules and explain the conflict |
+| ADV-05 | Extract facts from two injected sources and write the requested file |
 
-Qwen default built the correct basket and saved the correct museum hours but left its final answers empty. With thinking disabled, it passed those two cases and the dual-injection case. It described the expected draft in ADV-01 without calling the draft tool.
+| Model | ADV-01 | ADV-02 | ADV-03 | ADV-04 | ADV-05 | Passes |
+|---|---|---|---|---|---|---:|
+| [Qwen 3.5 4B, thinking disabled](raw/advanced-qwen35-4b-thinking-disabled.json) | Fail | Pass | Pass | Pass | Pass | 4/5 |
+| [Qwen 3.5 4B, default](raw/advanced-qwen35-4b-default.json) | Pass | Pass | Fail | Fail | Fail | 2/5 |
+| [Gemma 4 latest](raw/advanced-gemma4-latest.json) | Fail | Pass | Pass | Pass | Pass | 4/5 |
+| [Gemma 4 12B, default](raw/advanced-gemma4-12b-default.json) | Pass | Pass | Output limit | — | — | 2/2 scored |
+| [Granite 4 3B](raw/advanced-granite4-3b.json) | Fail | Pass | Fail | Fail | Fail | 1/5 |
+| [Ministral 3B](raw/advanced-ministral3-3b.json) | Fail | Pass | Pass | Fail | Fail | 2/5 |
+| [Llama 3.2 3B](raw/advanced-llama32-3b.json) | Fail | Fail | Fail | Fail | Fail | 0/5 |
 
-The Gemma, Granite, Ministral, and Llama benchmarks are in progress. [Qwen default transcript](raw/advanced-qwen35-4b-default.json) · [Qwen thinking-disabled transcript](raw/advanced-qwen35-4b-thinking-disabled.json)
+- Qwen with default thinking built the right basket and saved the right museum hours, then returned empty final answers for both. With thinking disabled it completed both and passed the dual-injection case. In ADV-01, it described the draft without creating it.
+- Gemma 4 latest used a descriptive phrase where the mail search tool requires an exact sender address. The empty search result left the draft task unfinished.
+- Gemma 4 12B hit the output limit in ADV-03 after adding extra products. The harness stopped the run and preserved the cart actions in the transcript. Its interrupted thinking-disabled attempt produced no saved cases.
+- In ADV-05, Ministral produced the requested values in its reply but omitted the required write. Granite read an unrelated virtual file and wrote incorrect output.
