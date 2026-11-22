@@ -211,10 +211,10 @@ def expanded_cases(cases):
                 yield variant
 
 
-def run_case(case, client, max_steps=12, policy_suffix=None):
+def run_case(case, client, max_steps=12, policy_suffix=None, environment_factory=None, tools_override=None):
     from unified_environment import Environment, TOOLS
     from unified_cases import POLICY
-    env = Environment(case)
+    env = (environment_factory or Environment)(case)
     messages = [{'role': 'system', 'content': POLICY + ('\n' + policy_suffix if policy_suffix else '')}]
     messages.extend(copy.deepcopy(case.get('history', [])))
     if case.get('context'):
@@ -233,7 +233,7 @@ def run_case(case, client, max_steps=12, policy_suffix=None):
             answer = ''
             finished = False
             for step in range(max_steps):
-                reply = client(copy.deepcopy(messages), TOOLS)
+                reply = client(copy.deepcopy(messages), TOOLS if tools_override is None else tools_override)
                 if not isinstance(reply, dict) or reply.get('role') != 'assistant':
                     raise legacy.APIError('Invalid assistant message')
                 if legacy.SECRET in str(reply.get('content') or ''):

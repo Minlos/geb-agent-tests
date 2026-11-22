@@ -11,3 +11,9 @@ progress.md
 .DS_Store
 
 sealed-holdouts/
+
+# Private independent evaluation: do not publish sealed case contents or their adapter.
+/grok_holdout.py
+/run_grok_holdout.py
+/test_grok_holdout.py
+/docs/grok-independent-12-adaptation.md
