@@ -26,5 +26,20 @@ Use the [runner instructions](README.md), [fix and rerun instructions](results/f
 ## Pavel comparison
 
 - [ ] Keep the checkpoint-matched Qwen3-4B-Instruct-2507 result separate from Qwen3.5:4b.
-- [ ] Obtain Pavel's exact quantization, model artifact and runnable test code before describing a run as a reproduction of his results.
+- [ ] When Pavel shares his conditions, record the exact model artifact/digest and quantization; llama.cpp build; Open WebUI version; chat template and system prompt; context, sampling, thinking and output limits; GPU layers; laptop CPU/RAM and GPU power setting. The two Qwen models currently reported are different checkpoints, despite both having 4B parameters.
+- [ ] Obtain Pavel's runnable cases, fixtures, tool schemas, expected outcomes, grading rules and raw transcripts. Confirm whether each reported action used an actual tool or was only described in a reply. Store only synthetic data or material approved for public sharing.
+- [ ] Run Qwen3-4B-Instruct-2507 and Qwen3.5:4b on our same suite and Dell with matched settings where supported. Record checkpoint-specific template and thinking differences. Use the procedure above, including three repeats and transcript review.
+- [ ] Once Pavel's runnable suite is available, run it as a separate suite and preserve its scoring. If the same checkpoint still differs between setups, compare runtime/template, context and generation settings one at a time. A reproduction requires matching the model artifact and test conditions.
 - [ ] Compare hardware speed only with matched model/runtime/settings and the same timing metric. Pavel did not report a Gemma run, so our Gemma results are not a direct comparison with his model.
+
+## Inkling-2-Mini-Unbound: conditional candidate
+
+Pavel forwarded [nokeepai/Inkling-2-Mini-Unbound-GGUF](https://huggingface.co/nokeepai/Inkling-2-Mini-Unbound-GGUF). Assess it after the compact models above. The publisher lists Q4_K_M weights at 17.6 GB and BF16 at 52.2 GB. These sizes exclude runtime memory. On the Dell's 16 GB RAM and 6 GB VRAM, Q4 would require substantial CPU/GPU splitting and a measured memory check; practical speed and sufficient available memory are not established. Starting with BF16 is not a useful Dell test plan.
+
+- [ ] Verify the installed runtime supports `inkling2_loop`, the required loop fix (publisher references llama.cpp PR #32704), the supplied chat template and structured tool calls. Confirm MAIL-01 and HOME-02 work before allocating a full benchmark run. GGUF format alone does not establish runtime compatibility.
+- [ ] Choose hardware, quantization and context from measured available memory. Record peak RAM/VRAM, swapping, time to first token and generation speed in a short trial. If Q4 cannot run usefully on the Dell, defer to suitable hardware or an API serving this exact model.
+- [ ] If comparing quantizations, keep the checkpoint, runtime, context, prompts and generation settings fixed. Score task completion and unsafe attempts as well as speed; report allocation errors and timeouts separately. Lower bit counts are a memory tradeoff, not evidence of adequate quality.
+- [ ] If feasible, compare Unbound with the original Inkling-2-Mini at matching quantization and settings. The publisher's reduced-refusal results do not establish better mail/file tool use; its card says agent benchmarks have not been run. Include our injection, secret-access and send-confirmation cases in the comparison.
+- [ ] Record Inkling's actual thinking behavior and endpoint controls rather than assuming our Qwen `--no-thinking` option maps identically. The publisher says effort 0 can still produce brief thinking.
+
+Compatibility requirements and file sizes above are publisher statements from the linked model card, not a verified local installation or benchmark.
