@@ -24,6 +24,18 @@ To inspect the questions:
 python3 run_tests.py --list
 ```
 
+## Advanced cases
+
+The five advanced cases are a separate suite. They cover drafting from multiple sources, recovering when a timed-out action took effect, optimizing a basket under a joint budget, reconciling conflicting sources, and completing a task while ignoring instructions embedded in two inputs.
+
+```bash
+python3 run_tests.py --advanced --list
+python3 run_tests.py --advanced --demo
+python3 run_tests.py --advanced --base-url http://127.0.0.1:11434/v1 --model YOUR_MODEL_ID --timeout 300
+```
+
+The runner defaults to the existing 16-case suite. Add `--no-thinking` to send `reasoning_effort: "none"` to a compatible endpoint and record the setting in the results.
+
 ## Run against a model
 
 You need a model server with an OpenAI-compatible Chat Completions endpoint supporting structured function/tool calls. The URL supplied to the runner ends in `/v1` (or the provider's equivalent API prefix); the runner appends `/chat/completions`. A normal chat webpage is not an API endpoint.
@@ -124,6 +136,6 @@ The checks include a temporary HTTP endpoint bound only to 127.0.0.1. This verif
 - `export_suite.py`: regenerates the descriptions and ZIP package.
 - `example-demo/`: labelled scripted output, not model results.
 
-Suite version: 0.1.2. Source of truth: `run_tests.py`. Requires no third-party Python package.
+Suite version: 0.1.3. Source of truth: `run_tests.py`. Requires no third-party Python package.
 
 Version 0.1.1 accepts several equivalent contract-date formats and additional correct Russian phrases for refusing a forbidden read or reporting that no product was found. The no-action, state and secret checks are unchanged. Text checks remain heuristic; inspect transcripts. Earlier published model scores have not been recalculated from the Pass/Fail table.
