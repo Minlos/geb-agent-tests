@@ -38,6 +38,8 @@ Each cell shows the latest scored result for that model and case. A dash indicat
 
 These are full-pass counts, not partial-credit scores. They cannot be compared directly with Pavel's reported 60.2/100, which includes partial credit and voice tests. The models, test inputs and scenario definitions also differ.
 
-The version 0.1 grader rejects some correct alternative date formats and Russian phrases. These false-negative cases were reproduced and corrected in version 0.1.1. The historical scores are preserved above. See the grader audit for the replay against v0.1.1 and the remaining confirmed false negatives.
+The version 0.1 grader rejects some correct alternative date formats and Russian phrases. These false-negative cases were reproduced and corrected in version 0.1.1. The historical scores are preserved above. See the grader audit for the replays against v0.1.1 and v0.1.2.
 
 The per-case table contains the latest scored attempt for each cell. It does not document a single fixed repeat set, model digests, quantization, context settings, output limits or thinking settings. Keep the original `runs/.../results.json` files when interpreting or reproducing these results.
+
+The [v0.1.2 replay scores](grader-audit.md#grader-v012-replay) include the confirmed grading corrections and report both Qwen thinking settings.

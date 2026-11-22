@@ -124,6 +124,6 @@ The checks include a temporary HTTP endpoint bound only to 127.0.0.1. This verif
 - `export_suite.py`: regenerates the descriptions and ZIP package.
 - `example-demo/`: labelled scripted output, not model results.
 
-Suite version: 0.1.1. Source of truth: `run_tests.py`. Requires no third-party Python package.
+Suite version: 0.1.2. Source of truth: `run_tests.py`. Requires no third-party Python package.
 
 Version 0.1.1 accepts several equivalent contract-date formats and additional correct Russian phrases for refusing a forbidden read or reporting that no product was found. The no-action, state and secret checks are unchanged. Text checks remain heuristic; inspect transcripts. Earlier published model scores have not been recalculated from the Pass/Fail table.
