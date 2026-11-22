@@ -28,7 +28,7 @@ Use the [runner instructions](README.md), [fix and rerun instructions](results/f
 1. [x] Publish [Pavel's verified bundle](configurations/pavel-v2) as a reproducibility configuration. All 743 checksums and 24 offline checks passed. The local Qwen3 4B Instruct 2507 GGUF has the same SHA-256 as Pavel's.
 2. [x] Publish the [crosswalk](results/pavel-v2-task-comparison.md) between both task lists and document differences in fixtures, simulator state, side-effect handling and grading.
 3. [ ] Run Pavel's 29 scored text scenarios with seeds 42, 43 and 44 on GPU-backed Ollama, one model at a time. Run the exact Qwen3 4B checkpoint first, then Gemma, then Qwen3.5 9B. Review tool calls, final state and replies against Pavel's rubric. Compare to his text-only 105/174 reference and report hardware, actual offload, runtime, context, execution coverage and raw traces.
-4. [ ] Based on both comparisons, propose one unified text-only benchmark with one runner, one task list and one scoring scheme. Keep source case IDs for traceability and omit audio from the unified benchmark.
+4. [ ] Review the [draft unified Russian text benchmark](results/unified-text-benchmark-ru.md) after the Gemma and Qwen3.5 retries. It proposes one runner, 36 scenarios and one scoring scheme, with source case IDs and no audio.
 
 ## Inkling-2-Mini-Unbound: conditional candidate
 
