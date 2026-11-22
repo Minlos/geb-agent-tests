@@ -48,6 +48,11 @@ Compatibility requirements and file sizes above are publisher statements from th
 - [ ] Agree the provider and proposed $5 total usage / four-hour limit before provisioning. Recheck the live rental and storage price.
 - [ ] Execute the plan, publish raw evidence and comparison, then terminate the instance and check retained storage charges.
 
+## Matched Dell and OpenRouter runs
+
+- [ ] Run [the matched Dell profile](results/matched-local-openrouter-plan.md) on Gemma 4 E2B and exact-checkpoint Qwen3 4B, with Gemma first and one GPU model loaded at a time.
+- [ ] Start the free OpenRouter smoke test as soon as an API key is available. Record cloud results alongside the same task set when both tracks are ready.
+
 ## Research after the core comparison and unified proposal
 
 - [x] Survey [related benchmarks](results/related-benchmarks.md) and document [coverage gaps for Russian-speaking users](results/pavel-v2-benchmark-gaps-ru.md). The proposed benchmark uses Russian text, a single runner and a single scoring scheme.
