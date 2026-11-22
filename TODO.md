@@ -4,7 +4,7 @@ Test on Philip's Dell G3 3590: i7-9750H, 16 GB RAM, GTX 1660 Ti Max-Q with 6 GB 
 
 ## Models, in priority order
 
-- [x] **1. `qwen3:4b-instruct-2507-q4_K_M`** — test the checkpoint named in Pavel's report. It is already non-thinking. This matches the checkpoint, not necessarily Pavel's quantization, runtime or test environment. Published package size: about 2.5 GB. [Ollama tags](https://ollama.com/library/qwen3/tags).
+- [x] **1. `qwen3:4b-instruct-2507-q4_K_M`** — test the checkpoint named in Pavel's report. It is already non-thinking. Pavel's GGUF SHA-256 matches the local weights byte for byte. Runtime and hardware differ. Published package size: about 2.5 GB. [Ollama tags](https://ollama.com/library/qwen3/tags).
 - [ ] **2. `phi4-mini:3.8b`** — compare a different compact model family with function calling and documented Russian support. Published package size: about 2.5 GB. [Ollama model](https://ollama.com/library/phi4-mini) · [Microsoft model card](https://huggingface.co/microsoft/Phi-4-mini-instruct).
 - [x] **3. `qwen3.5:9b`** — test whether a larger Qwen improves reliability over the tested 4B. Use thinking disabled on a compatible endpoint and record that setting. Its published 6.6–7.6 GB package exceeds the GPU's nominal memory; expect CPU offloading. [Ollama model](https://ollama.com/library/qwen3.5).
 - [ ] **4. `ministral-3:8b`** — test whether the larger model addresses the observed 3B failures. Its approximately 6 GB package leaves no room for runtime overhead within 6 GB VRAM; expect some CPU offloading. [Ollama tags](https://ollama.com/library/ministral-3/tags).
@@ -30,8 +30,6 @@ Use the [runner instructions](README.md), [fix and rerun instructions](results/f
 3. [ ] Run Pavel's 29 scored text scenarios with seeds 42, 43 and 44 on GPU-backed Ollama, one model at a time. Run the exact Qwen3 4B checkpoint first, then Gemma, then Qwen3.5 9B. Review tool calls, final state and replies against Pavel's rubric. Compare to his text-only 105/174 reference and report hardware, actual offload, runtime, context, execution coverage and raw traces.
 4. [ ] Based on both comparisons, propose one unified text-only benchmark with one runner, one task list and one scoring scheme. Keep source case IDs for traceability and omit audio from the unified benchmark.
 
-5. [x] Survey [similar projects and relevant benchmarks](results/related-benchmarks.md).
-
 ## Inkling-2-Mini-Unbound: conditional candidate
 
 Pavel forwarded [nokeepai/Inkling-2-Mini-Unbound-GGUF](https://huggingface.co/nokeepai/Inkling-2-Mini-Unbound-GGUF). Assess it after the compact models above. The publisher lists Q4_K_M weights at 17.6 GB and BF16 at 52.2 GB. These sizes exclude runtime memory. On the Dell's 16 GB RAM and 6 GB VRAM, Q4 would require substantial CPU/GPU splitting and a measured memory check; practical speed and sufficient available memory are not established. Starting with BF16 is not a useful Dell test plan.
@@ -49,3 +47,7 @@ Compatibility requirements and file sizes above are publisher statements from th
 - [x] Prepare a [bounded server test plan](results/server-test-plan.md): one 48 GB GPU, Inkling Q4 versus Q8, Qwen3.5:4b comparison, 16 baseline plus 10 advanced cases, and up to three repeats.
 - [ ] Agree the provider and proposed $5 total usage / four-hour limit before provisioning. Recheck the live rental and storage price.
 - [ ] Execute the plan, publish raw evidence and comparison, then terminate the instance and check retained storage charges.
+
+## Research after the core comparison and unified proposal
+
+- [x] Survey [related benchmarks](results/related-benchmarks.md) and document [coverage gaps for Russian-speaking users](results/pavel-v2-benchmark-gaps-ru.md). The proposed benchmark uses Russian text, a single runner and a single scoring scheme.
