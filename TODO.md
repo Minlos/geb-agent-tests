@@ -6,7 +6,7 @@ Test on Philip's Dell G3 3590: i7-9750H, 16 GB RAM, GTX 1660 Ti Max-Q with 6 GB 
 
 - [x] **1. `qwen3:4b-instruct-2507-q4_K_M`** — test the checkpoint named in Pavel's report. It is already non-thinking. This matches the checkpoint, not necessarily Pavel's quantization, runtime or test environment. Published package size: about 2.5 GB. [Ollama tags](https://ollama.com/library/qwen3/tags).
 - [ ] **2. `phi4-mini:3.8b`** — compare a different compact model family with function calling and documented Russian support. Published package size: about 2.5 GB. [Ollama model](https://ollama.com/library/phi4-mini) · [Microsoft model card](https://huggingface.co/microsoft/Phi-4-mini-instruct).
-- [ ] **3. `qwen3.5:9b`** — test whether a larger Qwen improves reliability over the tested 4B. Use thinking disabled on a compatible endpoint and record that setting. Its published 6.6–7.6 GB package exceeds the GPU's nominal memory; expect CPU offloading. [Ollama model](https://ollama.com/library/qwen3.5).
+- [x] **3. `qwen3.5:9b`** — test whether a larger Qwen improves reliability over the tested 4B. Use thinking disabled on a compatible endpoint and record that setting. Its published 6.6–7.6 GB package exceeds the GPU's nominal memory; expect CPU offloading. [Ollama model](https://ollama.com/library/qwen3.5).
 - [ ] **4. `ministral-3:8b`** — test whether the larger model addresses the observed 3B failures. Its approximately 6 GB package leaves no room for runtime overhead within 6 GB VRAM; expect some CPU offloading. [Ollama tags](https://ollama.com/library/ministral-3/tags).
 
 Package sizes are not total runtime memory. Verify current tags and record the actual downloaded model digest and quantization. Run one model at a time.
