@@ -16,3 +16,7 @@ A bounded diagnostic for the planned Gemma endpoint identified Google AI Studio'
 The public catalog listed zero input/output prices and structured tools for the selected endpoints. No paid fallback was used. Runs used suite v0.1.5, temperature 0, 1,024 output tokens, one repeat, a 120-second request timeout, default provider routing and no thinking override. Source hashes, original API messages and returned usage are in the raw files. A separate four-token diagnostic request was not a scored scenario.
 
 Next action: retry the incomplete free smoke checks after upstream availability recovers. Keep these attempts in the record. Expansion to the full suites remains governed by the [combined plan](server-test-plan.md); no full API benchmark has run.
+
+## Gemma retry
+
+A further request to `google/gemma-4-26b-a4b-it:free` again returned HTTP 429 on MAIL-01 before any answer; HOME-02 was not attempted. This adds no scored observation. [Raw retry](raw/openrouter-gemma4-26b-retry.json). A metered two-case fallback with a $0.50 maximum has been proposed and remains pending approval.
