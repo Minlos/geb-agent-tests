@@ -23,14 +23,12 @@ Package sizes are not total runtime memory. Verify current tags and record the a
 
 Use the [runner instructions](README.md), [fix and rerun instructions](results/fix-and-rerun-instructions.md) and [extended test instructions](results/extended-test-instructions.md). Do not send unsupported thinking parameters to models that have no thinking control.
 
-## Pavel comparison
+## Pavel comparison and unified benchmark
 
-- [x] Keep the checkpoint-matched Qwen3-4B-Instruct-2507 result separate from Qwen3.5:4b.
-- [ ] When Pavel shares his conditions, record the exact model artifact/digest and quantization; llama.cpp build; Open WebUI version; chat template and system prompt; context, sampling, thinking and output limits; GPU layers; laptop CPU/RAM and GPU power setting. The two Qwen models currently reported are different checkpoints, despite both having 4B parameters.
-- [ ] Obtain Pavel's runnable cases, fixtures, tool schemas, expected outcomes, grading rules and raw transcripts. Confirm whether each reported action used an actual tool or was only described in a reply. Store only synthetic data or material approved for public sharing.
-- [ ] Run Qwen3-4B-Instruct-2507 and Qwen3.5:4b on our same suite and Dell with matched settings where supported. Record checkpoint-specific template and thinking differences. Use the procedure above, including three repeats and transcript review.
-- [ ] Once Pavel's runnable suite is available, run it as a separate suite and preserve its scoring. If the same checkpoint still differs between setups, compare runtime/template, context and generation settings one at a time. A reproduction requires matching the model artifact and test conditions.
-- [ ] Compare hardware speed only with matched model/runtime/settings and the same timing metric. Pavel did not report a Gemma run, so our Gemma results are not a direct comparison with his model.
+1. [ ] Publish Pavel's verified bundle under `configurations/pavel-v2` as a reproducibility configuration. All 743 checksums and 24 offline checks passed. The local Qwen3 4B Instruct 2507 GGUF has the same SHA-256 as Pavel's.
+2. [ ] Publish the crosswalk between both task lists and document differences in fixtures, simulator state, side-effect handling and grading.
+3. [ ] Run Pavel's 29 scored text scenarios with seeds 42, 43 and 44 on GPU-backed Ollama, one model at a time. Run the exact Qwen3 4B checkpoint first, then Gemma, then Qwen3.5 9B. Review tool calls, final state and replies against Pavel's rubric. Compare to his text-only 105/174 reference and report hardware, actual offload, runtime, context, execution coverage and raw traces.
+4. [ ] Based on both comparisons, propose one unified text-only benchmark with one runner, one task list and one scoring scheme. Keep source case IDs for traceability and omit audio from the unified benchmark.
 
 ## Inkling-2-Mini-Unbound: conditional candidate
 
