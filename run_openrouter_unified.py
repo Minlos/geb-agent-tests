@@ -15,12 +15,22 @@ from unified_cases import CASES
 MODELS = ['google/gemma-4-31b-it', 'qwen/qwen3.8-27b', 'qwen/qwen3.6-35b-a3b']
 
 
+def select_cases(only=None):
+    if not only:
+        return CASES
+    ids = set(only.split(','))
+    if ids - {c['id'] for c in CASES}:
+        raise ValueError('Unknown scenario ID')
+    return [c for c in CASES if c['id'] in ids]
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--cap', default='1', help='Aggregate USD limit, including prior spend')
     parser.add_argument('--prior-spend', default='0', help='Conservative spend/reservations already used')
     parser.add_argument('--api-key-env', default='OPENROUTER_API_KEY')
     parser.add_argument('--output', type=Path)
+    parser.add_argument('--only', help='Optional exact scenario IDs for a preserved supplemental run')
     args = parser.parse_args()
     key = os.environ.get(args.api_key_env)
     if not key:
@@ -36,8 +46,9 @@ def main():
     if folder.exists():
         parser.error('Use a new output directory to preserve prior evidence')
     folder.mkdir(parents=True)
-    cases = list(runner.expanded_cases(CASES))
-    variants = {c['id']: sum(v['id'] == c['id'] for v in cases) for c in CASES}
+    selected = select_cases(args.only)
+    cases = list(runner.expanded_cases(selected))
+    variants = {c['id']: sum(v['id'] == c['id'] for v in cases) for c in selected}
     hashes = {f: hashlib.sha256((runner.ROOT / f).read_bytes()).hexdigest() for f in
               ['run_unified.py', 'unified_cases.py', 'unified_environment.py',
                'openrouter_budget.py', 'run_openrouter_unified.py']}
@@ -50,7 +61,7 @@ def main():
             (out / 'catalog.json').write_text(json.dumps(m, ensure_ascii=False, indent=2))
             client = Client(model, key, int(m['context_length']), budget)
             meta = {'model': model, 'suite': runner.VERSION, 'repeat': 1,
-                    'case_ids': [c['id'] for c in CASES], 'variant_counts': variants,
+                    'case_ids': [c['id'] for c in selected], 'variant_counts': variants,
                     'started_at_utc': stamp, 'source_sha256': hashes,
                     'max_tokens': 1024, 'max_steps': 12, 'timeout': 300,
                     'temperature': 0, 'reasoning_request': {'enabled': False},

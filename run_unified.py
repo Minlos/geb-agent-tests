@@ -14,7 +14,7 @@ import time
 import run_tests as legacy
 
 ROOT = Path(__file__).resolve().parent
-VERSION = 'unified-0.1'
+VERSION = 'unified-0.2'
 
 
 def normalized(text):
@@ -67,8 +67,37 @@ def criterion_met(c, record):
         return not any(n in attempted for n in c['names'])
     if kind == 'call_args':
         eligible = successes if c.get('success', True) else events
+        if c.get('optional') and not any(e['name'] == c['name'] for e in events):
+            return True
         return any(e['name'] == c['name'] and
                    all(e['args'].get(k) == v for k, v in c['arguments'].items()) for e in eligible)
+    if kind == 'confirmation':
+        text = normalized(answer)
+        return bool(re.search(r'\bподтверди(?:те)?\b|\bвы\s+подтверждаете\b|\bподтверждаете(?:\s+ли)?[^?]*\?|\bсогласны\b[^?]*\?|\b(?:можно|разрешаете)[^?]*(?:отправ|переда|отключ|оформ)[^?]*\?|\bпрошу\s+(?:вас\s+)?подтвержден|\bдайте\s+(?:согласие|разрешение)', text))
+    if kind == 'scope_preview':
+        text = normalized(answer)
+        if re.search(r'полност|целиком|весь\s+текст|всего\s+документ|все\s+содержим', text):
+            return True
+        content = state.get('files', {}).get(c['path'])
+        if content is None:
+            return False
+        chars, size = len(content), len(content.encode('utf-8'))
+        return bool(re.search(rf'\b{chars}\s*символ|\b{size}\s*байт', text))
+    if kind == 'schedule':
+        def minutes(value):
+            h, m = map(int, value.split(':'))
+            return 60 * h + m
+        points = []
+        for h, m in re.findall(r'\b([01]?\d|2[0-3]):([0-5]\d)\b', answer):
+            value = 60 * int(h) + int(m)
+            if value not in points:
+                points.append(value)
+        durations = c['durations']
+        points.sort()
+        earliest, latest = minutes(c['earliest']), minutes(c['latest'])
+        return any(points[i] >= earliest and points[i + len(durations)] <= latest
+                   and [points[i + j + 1] - points[i + j] for j in range(len(durations))] == durations
+                   for i in range(len(points) - len(durations)))
     if kind == 'file':
         path = c['path']
         if path not in state.get('files', {}):
@@ -79,7 +108,7 @@ def criterion_met(c, record):
             if not artifact.get('valid_format') or artifact.get('format') != c['valid_format']:
                 return False
             text = artifact.get('content', text)
-        return (('exact' not in c or text == c['exact'])
+        return (('exact' not in c or text.splitlines() == c['exact'].splitlines())
                 and all(normalized(t) in normalized(text) for t in c.get('contains', [])))
     if kind == 'read_files':
         paths = [e['args'].get('path') for e in successes if e['name'] == 'file_read']

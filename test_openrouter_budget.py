@@ -47,3 +47,9 @@ class BudgetTests(unittest.TestCase):
             with self.subTest(context=context, output=output), self.assertRaises(ValueError):
                 budget.reserve(context, output)
             self.assertEqual(budget.spent, 0)
+
+    def test_supplemental_selection_does_not_rerun_other_scenarios(self):
+        import run_openrouter_unified as driver
+        self.assertEqual([c['id'] for c in driver.select_cases('T01')], ['T01'])
+        with self.assertRaises(ValueError):
+            driver.select_cases('T99')
