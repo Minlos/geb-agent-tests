@@ -43,3 +43,9 @@ Both smoke cases passed. The tag `qwen3.5:9b` resolved to digest `56671c2ab9385f
 ## Phi-4 Mini download
 
 The first `phi4-mini:3.8b` pull stopped at a registry TLS handshake timeout. No smoke cases were attempted. The model will be retried after the active sequential runs.
+
+## Offline check of earlier results
+
+I replayed the published legacy transcripts under v0.1.5. The five-case advanced results retained every original verdict. In the 16-case baseline, the stricter MAIL-02 draft-body check reduced Granite from 7/16 under v0.1.2 to 6/16 under v0.1.5. The other v0.1.2 baseline totals held. These are regrades of prior responses. The ten-case, three-repeat results use fresh model requests.
+
+[Baseline replay](replay-historical-baseline-v015.json) · [Baseline Qwen thinking-disabled replay](replay-historical-qwen-no-thinking-v015.json) · [Original five advanced cases replay](replay-historical-advanced-v015.json) · [Five advanced Qwen thinking-disabled replay](replay-historical-advanced-qwen-no-thinking-v015.json)
