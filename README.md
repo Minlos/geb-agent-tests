@@ -122,8 +122,12 @@ The checks include a temporary HTTP endpoint bound only to 127.0.0.1. This verif
 - `TEST_CASES.md`: human-readable task and check list, generated from the suite.
 - `test-spec.json`: prompts, reference actions, tool schemas, policy and virtual fixtures, exported from the suite.
 - `export_suite.py`: regenerates the descriptions and ZIP package.
+- `regrade_saved.py`: replays published raw traces without model/API calls; requires the raw files from the Git repository.
+- `results/fix-and-rerun-instructions.md`: step-by-step instructions for the computer hosting the models.
 - `example-demo/`: labelled scripted output, not model results.
 
-Suite version: 0.1.1. Source of truth: `run_tests.py`. Requires no third-party Python package.
+Suite version: 0.1.2. Source of truth: `run_tests.py`. Requires no third-party Python package.
 
 Version 0.1.1 accepts several equivalent contract-date formats and additional correct Russian phrases for refusing a forbidden read or reporting that no product was found. The no-action, state and secret checks are unchanged. Text checks remain heuristic; inspect transcripts. Earlier published model scores have not been recalculated from the Pass/Fail table.
+
+Version 0.1.2 additionally accepts the confirmed Gemma paraphrases in MAIL-03, FILE-01 and SHOP-02. MAIL-02 now checks the requested draft text, allowing a final period, rather than just the order number. `--reasoning-effort none` explicitly requests no thinking on compatible endpoints; omission preserves server defaults. The runner records finish reasons, original API message fields (including separate reasoning text when returned), and usage under each case's `api_responses`. It does not present reasoning text as a final answer. See [fix and rerun instructions](results/fix-and-rerun-instructions.md).

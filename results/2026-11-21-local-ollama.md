@@ -2,6 +2,8 @@
 
 [Raw transcripts](raw/) · [Grader audit](grader-audit.md)
 
+The tables below preserve the original scores. See [v0.1.2 offline regrading](grader-audit.md#verified-replay-against-grader-v012) for corrected checks of those same answers and [fix and rerun instructions](fix-and-rerun-instructions.md) for the next model run.
+
 | Model | Pass | Fail | Incomplete | Cases scored |
 |---|---:|---:|---:|---:|
 | qwen3.5:4b | 10 | 6 | 0 | 16 of 16 |

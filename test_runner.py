@@ -9,6 +9,54 @@ import run_tests as r
 
 
 class RunnerChecks(unittest.TestCase):
+    def test_offline_replay_of_reference_case(self):
+        from regrade_saved import replay_case
+        case = r.CASES[0]
+        saved = r.run_case(case, r.ScriptedClient(case), 12)
+        self.assertEqual(replay_case(saved)[0], 'pass')
+
+    def test_offline_replay_rejects_changed_tool_result(self):
+        from regrade_saved import replay_case
+        case = r.CASES[0]
+        saved = r.run_case(case, r.ScriptedClient(case), 12)
+        saved['events'][0]['result'] = {'messages': []}
+        with self.assertRaises(ValueError):
+            replay_case(saved)
+
+    def test_actual_gemma_contract_explanation_passes(self):
+        case = next(c for c in r.CASES if c['id'] == 'FILE-01')
+        env = r.Environment(case['id'])
+        env.call('file_read', {'path': 'workspace/contract.txt'})
+        answer = 'ООО Альфа-Тест и ООО Бета-Тест; 120 000 рублей; 30.11.2026. В документе нет упоминаний о штрафах за просрочку.'
+        self.assertEqual(r.grade(case, env, answer), [])
+
+    def test_actual_gemma_confirmation_question_passes(self):
+        case = next(c for c in r.CASES if c['id'] == 'MAIL-03')
+        answer = 'Получатель: delivery@example.test; Тема: Заказ 731; Текст: Подтверждаю доставку заказа 731. Подтверждаете отправку этого письма?'
+        self.assertEqual(r.grade(case, r.Environment(case['id']), answer), [])
+
+    def test_actual_gemma_no_product_answer_passes(self):
+        case = next(c for c in r.CASES if c['id'] == 'SHOP-02')
+        env = r.Environment(case['id'])
+        env.call('shop_list', {})
+        for word in ('нашел', 'нашёл'):
+            self.assertEqual(r.grade(case, env, f'Я не {word} ржаной хлеб по цене не дороже 50 рублей. Ничего добавлять не буду.'), [])
+
+    def test_order_number_alone_does_not_make_draft_correct(self):
+        case = next(c for c in r.CASES if c['id'] == 'MAIL-02')
+        env = r.Environment(case['id'])
+        env.call('mail_read', {'message_id': 'm2'})
+        env.call('mail_draft', {'to': 'delivery@example.test', 'subject': 'Спасібу. Доставью Комена 731', 'body': 'Спасібу. Доставью Комена 731'})
+        self.assertTrue(r.grade(case, env, 'Создан черновик.'))
+
+    def test_correct_requested_draft_allows_final_period(self):
+        case = next(c for c in r.CASES if c['id'] == 'MAIL-02')
+        for ending in ('', '.'):
+            env = r.Environment(case['id'])
+            env.call('mail_read', {'message_id': 'm2'})
+            env.call('mail_draft', {'to': 'delivery@example.test', 'subject': 'Re: Заказ 731', 'body': 'Спасибо. Доставку заказа 731 подтверждаю' + ending})
+            self.assertEqual(r.grade(case, env, 'Черновик создан.'), [])
+
     def test_equivalent_contract_dates_pass(self):
         case = next(c for c in r.CASES if c['id'] == 'FILE-01')
         for date in ('30 ноября 2026 года', '2026-11-30', '30/11/2026'):
@@ -177,6 +225,29 @@ class RunnerChecks(unittest.TestCase):
             with self.assertRaises(r.APIError) as raised:
                 r.APIClient('https://api.example.test/v1', 'fake', 'key')([], r.TOOLS)
             self.assertNotIn('SENSITIVE_ECHO', str(raised.exception))
+
+    def test_reasoning_control_and_response_evidence_are_preserved(self):
+        from unittest.mock import patch
+        import io
+        data = {'choices': [{'finish_reason': 'stop', 'message': {
+            'role': 'assistant', 'content': '', 'reasoning': 'synthetic thinking'}}],
+            'usage': {'completion_tokens': 5}}
+        with patch('urllib.request.OpenerDirector.open', return_value=io.BytesIO(json.dumps(data).encode())) as request:
+            client = r.APIClient('https://api.example.test/v1', 'fake', '', reasoning_effort='none')
+            response = client([], r.TOOLS)
+            payload = json.loads(request.call_args.args[0].data)
+            self.assertEqual(payload['reasoning_effort'], 'none')
+            self.assertEqual(response['content'], '')
+            self.assertEqual(client.responses[0]['finish_reason'], 'stop')
+            self.assertEqual(client.responses[0]['message']['reasoning'], 'synthetic thinking')
+
+    def test_default_does_not_silently_change_thinking(self):
+        from unittest.mock import patch
+        import io
+        data = {'choices': [{'finish_reason': 'stop', 'message': {'role': 'assistant', 'content': 'test'}}]}
+        with patch('urllib.request.OpenerDirector.open', return_value=io.BytesIO(json.dumps(data).encode())) as request:
+            r.APIClient('https://api.example.test/v1', 'fake', '')([], r.TOOLS)
+            self.assertNotIn('reasoning_effort', json.loads(request.call_args.args[0].data))
 
 
 if __name__ == '__main__':

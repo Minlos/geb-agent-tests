@@ -25,7 +25,8 @@ for c in r.CASES:
               '```json', json.dumps(c['checks'], ensure_ascii=False, indent=2), '```', '']
 (root / 'TEST_CASES.md').write_text('\n'.join(lines), encoding='utf-8')
 files = ['README.md', 'TEST_CASES.md', 'run_tests.py', 'test_runner.py',
-         'export_suite.py', 'test-spec.json', 'example-demo/results.json', 'example-demo/summary.md']
+         'export_suite.py', 'regrade_saved.py', 'test-spec.json',
+         'results/fix-and-rerun-instructions.md', 'example-demo/results.json', 'example-demo/summary.md']
 target = root / ('geb-agent-tests-v' + r.SUITE_VERSION + '.zip')
 with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED) as z:
     for name in files:
