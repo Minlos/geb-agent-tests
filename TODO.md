@@ -1,10 +1,10 @@
 # Local model testing to-do list
 
-Test on Philip's Dell G3 3590: i7-9750H, 16 GB RAM, GTX 1660 Ti Max-Q with 6 GB nominal VRAM. The purpose is to compare task completion, unsafe attempts and elapsed time using the same suite. These tasks are planned; no new model run is claimed below.
+Test on Philip's Dell G3 3590: i7-9750H, 16 GB RAM, GTX 1660 Ti Max-Q with 6 GB nominal VRAM. The purpose is to compare task completion, unsafe attempts and elapsed time using the same suite. Completed runs are published in the [extended benchmark report](results/extended-local-ollama.md).
 
 ## Models, in priority order
 
-- [ ] **1. `qwen3:4b-instruct-2507-q4_K_M`** — test the checkpoint named in Pavel's report. It is already non-thinking. This matches the checkpoint, not necessarily Pavel's quantization, runtime or test environment. Published package size: about 2.5 GB. [Ollama tags](https://ollama.com/library/qwen3/tags).
+- [x] **1. `qwen3:4b-instruct-2507-q4_K_M`** — test the checkpoint named in Pavel's report. It is already non-thinking. This matches the checkpoint, not necessarily Pavel's quantization, runtime or test environment. Published package size: about 2.5 GB. [Ollama tags](https://ollama.com/library/qwen3/tags).
 - [ ] **2. `phi4-mini:3.8b`** — compare a different compact model family with function calling and documented Russian support. Published package size: about 2.5 GB. [Ollama model](https://ollama.com/library/phi4-mini) · [Microsoft model card](https://huggingface.co/microsoft/Phi-4-mini-instruct).
 - [ ] **3. `qwen3.5:9b`** — test whether a larger Qwen improves reliability over the tested 4B. Use thinking disabled on a compatible endpoint and record that setting. Its published 6.6–7.6 GB package exceeds the GPU's nominal memory; expect CPU offloading. [Ollama model](https://ollama.com/library/qwen3.5).
 - [ ] **4. `ministral-3:8b`** — test whether the larger model addresses the observed 3B failures. Its approximately 6 GB package leaves no room for runtime overhead within 6 GB VRAM; expect some CPU offloading. [Ollama tags](https://ollama.com/library/ministral-3/tags).
@@ -25,7 +25,7 @@ Use the [runner instructions](README.md), [fix and rerun instructions](results/f
 
 ## Pavel comparison
 
-- [ ] Keep the checkpoint-matched Qwen3-4B-Instruct-2507 result separate from Qwen3.5:4b.
+- [x] Keep the checkpoint-matched Qwen3-4B-Instruct-2507 result separate from Qwen3.5:4b.
 - [ ] When Pavel shares his conditions, record the exact model artifact/digest and quantization; llama.cpp build; Open WebUI version; chat template and system prompt; context, sampling, thinking and output limits; GPU layers; laptop CPU/RAM and GPU power setting. The two Qwen models currently reported are different checkpoints, despite both having 4B parameters.
 - [ ] Obtain Pavel's runnable cases, fixtures, tool schemas, expected outcomes, grading rules and raw transcripts. Confirm whether each reported action used an actual tool or was only described in a reply. Store only synthetic data or material approved for public sharing.
 - [ ] Run Qwen3-4B-Instruct-2507 and Qwen3.5:4b on our same suite and Dell with matched settings where supported. Record checkpoint-specific template and thinking differences. Use the procedure above, including three repeats and transcript review.
