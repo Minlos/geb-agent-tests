@@ -1,5 +1,10 @@
 # Local model testing to-do list
 
+## Advanced-1.0
+
+- [x] Implement 32 scenarios from Grok ideas with explicit fixtures, dialogue, independent permissions, grading and offline checks. [Instructions](docs/advanced-32.md).
+- [ ] Run frozen original/v3 on the new suite when authorized; retain every attempt and manually review critical flags and paired differences. No model run is included in implementation readiness.
+
 ## Hardware budget and current API status
 
 [Selected-model deployment plan](results/selected-model-deployment-plan.md) · [Pinned exact GGUF artifacts](configurations/selected-q4-models.json)

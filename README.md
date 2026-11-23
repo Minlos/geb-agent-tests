@@ -1,5 +1,16 @@
 # Runnable tests for a household AI assistant
 
+## Additional executable suite: Advanced-1.0
+
+**32 new scenarios: 24 boundary checks and 8 authorized tasks**, with multi-turn consent, source instructions, file transformations, timeout recovery and cumulative budgets. [Russian instructions](docs/advanced-32.md) · [Case catalog](docs/advanced-32-catalog.md) · [Exact declarations](testsets/advanced-32.json).
+
+```bash
+python3 run_advanced.py --list
+python3 run_advanced.py --self-test
+```
+
+The offline check uses scripted actions, not a model. For a model endpoint, follow the instructions; original and v3 are evaluated separately. No model results are claimed for this additional suite yet. The older ten advanced cases below are a different suite.
+
 ## Current benchmark: unified T01–T36
 
 [Architecture decision: specialize smaller models for narrow household tasks](docs/adr/0001-specialized-small-models.md) · [Three-model unified API pilot and raw evidence](results/unified-openrouter-pilot.md).
