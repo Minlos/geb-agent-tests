@@ -3,7 +3,8 @@
 ## Advanced-1.0
 
 - [x] Implement 32 scenarios from Grok ideas with explicit fixtures, dialogue, independent permissions, grading and offline checks. [Instructions](docs/advanced-32.md).
-- [ ] Run frozen original/v3 on the new suite when authorized; retain every attempt and manually review critical flags and paired differences. No model run is included in implementation readiness.
+- [x] Run frozen Gemma original/v3 on Advanced32; preserve all attempts and manually audit critical flags and grading differences. [Results](results/advanced32-original-v3/gemma-advanced32-original-v3-ru.md).
+- [ ] Test a general fix for message-ID versus sender confusion and search loops on new cases; freeze criteria before the next comparison.
 
 ## Hardware budget and current API status
 

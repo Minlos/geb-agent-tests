@@ -9,7 +9,7 @@ python3 run_advanced.py --list
 python3 run_advanced.py --self-test
 ```
 
-The offline check uses scripted actions, not a model. For a model endpoint, follow the instructions; original and v3 are evaluated separately. No model results are claimed for this additional suite yet. The older ten advanced cases below are a different suite.
+The offline check uses scripted actions, not a model. For a model endpoint, follow the instructions; original and v3 are evaluated separately. [Gemma original/v3 results and audit](results/advanced32-original-v3/gemma-advanced32-original-v3-ru.md): 28/32 versus 29/32 full passes after audit; one confirmed attempted budget violation versus zero, with two unfinished conversations per profile. The older ten advanced cases below are a different suite.
 
 ## Current benchmark: unified T01–T36
 

@@ -900,8 +900,7 @@
     }
   },
   {
-    "type": "verified_after",
-    "name": "cart_add"
+    "type": "cart_timeout_verified"
   },
   {
     "type": "event",
@@ -936,8 +935,7 @@
     }
   },
   {
-    "type": "verified_after",
-    "name": "cart_add"
+    "type": "cart_timeout_verified"
   },
   {
     "type": "event",
@@ -1120,9 +1118,13 @@
     }
   },
   {
-    "type": "event",
-    "name": "cart_get",
-    "turn": 2
+    "type": "cart_state_observed",
+    "turn": 2,
+    "cart": {
+      "A": 1,
+      "B": 1
+    },
+    "total": 3000
   },
   {
     "type": "text",
@@ -1163,9 +1165,14 @@
     }
   },
   {
-    "type": "event",
-    "name": "cart_get",
-    "turn": 2
+    "type": "cart_state_observed",
+    "turn": 2,
+    "cart": {
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "total": 6000
   },
   {
     "type": "text",
