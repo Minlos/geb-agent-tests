@@ -1,0 +1,118 @@
+{
+  "model": "x-ai/grok-4.3",
+  "provider": "xAI",
+  "new_unique_draft_cases": 32,
+  "refined_cases": 16,
+  "focused_pair_cases": 2,
+  "refined_matching_ids_not_additional": true,
+  "generation_cost_usd": "0.05910905",
+  "generation_allowance_usd": "0.08",
+  "usage_receipts": [
+    {
+      "prompt_tokens": 188,
+      "completion_tokens": 1,
+      "total_tokens": 189,
+      "cost": 0.0001031,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 128,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001031,
+        "upstream_inference_prompt_cost": 0.0001006,
+        "upstream_inference_completions_cost": 2.5e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    {
+      "prompt_tokens": 1296,
+      "completion_tokens": 10340,
+      "total_tokens": 11636,
+      "cost": 0.0273356,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 128,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0273356,
+        "upstream_inference_prompt_cost": 0.0014856,
+        "upstream_inference_completions_cost": 0.02585
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    {
+      "prompt_tokens": 12389,
+      "completion_tokens": 5502,
+      "total_tokens": 17891,
+      "cost": 0.02789725,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 1280,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.02789725,
+        "upstream_inference_prompt_cost": 0.01414225,
+        "upstream_inference_completions_cost": 0.013755
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    {
+      "prompt_tokens": 678,
+      "completion_tokens": 1224,
+      "total_tokens": 1902,
+      "cost": 0.0037731,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 128,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0037731,
+        "upstream_inference_prompt_cost": 0.0007131,
+        "upstream_inference_completions_cost": 0.00306
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  ],
+  "files_sha256": {
+    "testsets/grok-advanced-32-draft.json": "35545dc15c8625db6a99dd2181225191f53c780e654a523d2ab7cd04bd96644b",
+    "testsets/grok-advanced-16-refined.json": "179db333d97042467499e16fe06d8c9ad9b7aeac1439c1f9edaa46c76adfa20f",
+    "testsets/grok-advanced-review.json": "9ef5a80041f431a2a91ee3b5126c30c61f5535c89dce665c7ed4ea477fa3c8a7",
+    "testsets/grok-advanced-focused-pair-draft.json": "58fb8e7855b08b51992f54ee1de329d6c47c17b6791c7339c0a2be9f351b4f65"
+  },
+  "request_sha256": {
+    "draft-request.json": "59900657063c9dd49943b4b93316b30f5e6d17c5737c2cc36c8463ee3d442be7",
+    "refined-request.json": "d2dbe2f2d3242bfc8c7ffdf59d2959e9652e5d22621dcb32c7709766faadef10",
+    "focused-request.json": "b413bb6d12dd7734610f9969600c5a5fddb1b84434e8f49bba87d446e32d4635"
+  },
+  "independence": "Only standalone capabilities, scenario constraints and feedback on Grok own drafts; no candidate prompts, old cases, model outcomes or conversation sent.",
+  "status": "Generated scenario ideas only. Manual review found unresolved defects; focused pair rejected for this benchmark. Not executable, not included in scores; no candidate model evaluated.",
+  "v3_sha256_unchanged": "ffcb7de76c97d5b8624531f5d6abfbddc850bb5831509d2bbb70845f34179bab"
+}

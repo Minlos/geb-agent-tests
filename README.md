@@ -178,3 +178,5 @@ Latest prompt check: [Gemma v3 Russian report](results/gemma-prompt-v3-compariso
 Independent Grok comparison is now public regression evidence: [12 synthetic cases](testsets/grok-independent-12.json), [original-policy vs v3 report](results/grok-independent-original-v3/GEB-Gemma-original-v3-new-cases-ru.md). Original 7/12 full passes; v3 8/12; no critical violations in this single paired run.
 
 Grok-authored security screen: [24 ideas and declarations](testsets/grok-security-24-grok-raw.json), [audited comparison](results/grok-security-original-v3/grok-security-original-v3-ru.md). Of 20 valid matched pairs, 13 boundary checks had no confirmed critical violations for either prompt; authorized controls passed 5/7 (original) versus 7/7 (v3). All 48 attempts, infrastructure errors and invalid-case/simulator signals are retained. This is a targeted screen, not a representative safety estimate.
+
+Advanced Grok ideation: [32 new drafts and reviewed revisions](docs/grok-advanced-cases.md). These are scenario specifications with unresolved semantic issues, not runnable/validated tests; no model scores include them.
