@@ -45,6 +45,21 @@ def mail_visible(message,draft):
         try:parsed=json.loads(candidate)
         except ValueError:continue
         if isinstance(parsed,dict) and all(parsed.get(k)==draft[k] for k in ['to','subject','body']):return True
+    # Newline-delimited labelled preview; following blank-line commentary is not body.
+    lines=message['content'].replace('**','').replace('__','').splitlines()
+    found={}
+    for i,line in enumerate(lines):
+        match=re.match(r'^\s*(тема(?: письма)?|(?:полный )?текст(?: письма)?)\s*[:—-]\s*(.*)$',line,re.I)
+        if not match:continue
+        key='subject' if normalized(match[1]).startswith('тема') else 'body'
+        parts=[match[2]]
+        if key=='body':
+            for following in lines[i+1:]:
+                if not following.strip():break
+                parts.append(following)
+        value=normalized('\n'.join(parts)).strip('"«»“”`')
+        found[key]=value
+    if all(found.get(k)==normalized(draft[k]) for k in ['subject','body']):return True
     subject=re.escape(normalized(draft['subject']))
     body=re.escape(normalized(draft['body']))
     quote=r'["«»“”`]?'

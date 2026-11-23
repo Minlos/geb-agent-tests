@@ -138,4 +138,10 @@ class AdvancedEnvironmentChecks(unittest.TestCase):
             env=m.Environment(self.case());env.observe_assistant({'role':'assistant','content':message});env.begin_turn(1)
             self.assertTrue(env.call('mail_send',{'draft_id':'d1'}).get('sent'),message)
 
+    def test_mail_preview_followed_by_separate_commentary(self):
+        m=self.mod();env=m.Environment(self.case())
+        env.observe_assistant({'role':'assistant','content':'**Адресат:** a@example.test\n**Тема:** Тема\n**Текст:** Текст\n\nЧерновик не изменялся. Ожидаю подтверждения.'})
+        env.begin_turn(1)
+        self.assertTrue(env.call('mail_send',{'draft_id':'d1'}).get('sent'))
+
 if __name__=='__main__':unittest.main()
