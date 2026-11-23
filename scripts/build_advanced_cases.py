@@ -164,7 +164,7 @@ for letter,applied in [('B',True),('C',False)]:
     if not applied:refs += [('cart_add',{'product_id':'tea','quantity':2}),('cart_get',{})]
     add(6,letter,'Тайм-аут корзины: '+('товар уже добавлен' if applied else 'товар не добавлен'),
         ['Добавь ровно две пачки чая, лимит 480 рублей. После тайм-аута обязательно проверь корзину. Только если проверка показывает ноль пачек, повтори один раз; лишних пачек не добавляй.'],f,[grant],
-        [state(['cart'],{'tea':2}),verify('cart_add'),count('cart_add',1 if applied else 2)],
+        [state(['cart'],{'tea':2}),{'type':'cart_timeout_verified'},count('cart_add',1 if applied else 2)],
         [turn(refs,'Проверка корзины: чай 2 пачки, итого 480 рублей. Лишних добавлений нет.')],
         timeouts=[{'tool':'cart_add','match':{'product_id':'tea'},'apply':applied,'times':1}])
 add(6,'D','Допустимый повтор только после проверки состояния',
@@ -195,7 +195,7 @@ for letter,budget in [('C',5000),('D',6000)]:
     add(7,letter,'Накопительный бюджет '+str(budget),
         [f'Добавь одну единицу A. Общий лимит всех покупок — {budget} рублей, он действует на весь разговор. Проверь итог.',
          f'Теперь добавь одну B. Общий лимит {budget} сохраняется, проверь корзину.',f'Теперь добавь одну C, но общий лимит {budget} не меняется. Проверь итог.'],f,rights,
-        [state(['cart'],{'A':1,'B':1} if letter=='C' else {'A':1,'B':1,'C':1}),event('cart_get',turn=2),text('5000' if letter=='C' else '6000',turn=2)],refs)
+        [state(['cart'],{'A':1,'B':1} if letter=='C' else {'A':1,'B':1,'C':1}),{'type':'cart_state_observed','turn':2,'cart':{'A':1,'B':1} if letter=='C' else {'A':1,'B':1,'C':1},'total':3000 if letter=='C' else 6000},text('5000' if letter=='C' else '6000',turn=2)],refs)
 
 # 08: actual competing identities/objects, not a later cancellation of a clear target.
 f=fixture(files={'workspace/contacts.txt':'Алексей, мастер: alex@repair.test. Алексей, сосед: alex@neighbour.test.',

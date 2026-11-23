@@ -4,6 +4,7 @@
 The first ADV01D pair is excluded before repeating both sides, due to a reproduced
 simulator bug. Other completed observations are retained, never cherry-picked.
 """
+import argparse
 import copy
 import datetime as dt
 from decimal import Decimal
@@ -27,11 +28,18 @@ class PricedBudget(transport.Budget):
         self.spent+=amount;return amount
 
 def main():
-    source=ROOT/'runs/advanced32-gemma-original-v3-20261123/results.json'
-    out=ROOT/'runs/advanced32-gemma-original-v3-continuation-20261123'
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--source',action='append',required=True,type=Path)
+    p.add_argument('--repeat-case',required=True)
+    p.add_argument('--output',required=True,type=Path)
+    args=p.parse_args();sources=[ROOT/path for path in args.source];out=ROOT/args.output
     if out.exists():raise SystemExit('New output required')
-    first=json.loads(source.read_text());prior=first['budget']['spent_or_reserved_usd']
-    keep=[r for r in first['results'] if r['id']!='ADV-01D' and r.get('conversation_complete') and r.get('score') is not None]
+    documents=[json.loads(source.read_text()) for source in sources]
+    first=documents[0];prior=documents[-1]['budget']['spent_or_reserved_usd']
+    keep=[r for doc in documents for r in doc['results'] if r['id']!=args.repeat_case and r.get('conversation_complete') and r.get('score') is not None]
+    # Prior model/step-limit failures are finished attempts too: never retry them.
+    keep += [r for doc in documents for r in doc['results'] if r['id']!=args.repeat_case and (r.get('error')=='Invalid or excessive tool calls' or r.get('status')=='step_limit')]
+
     done={(r['id'],r['profile']) for r in keep}
     budget=PricedBudget('0.30',prior)
     transport.PROVIDER.update(only=['coreweave/fp4'],allow_fallbacks=False,max_price={'prompt':0.1,'completion':0.34,'request':0})
@@ -43,7 +51,7 @@ def main():
     meta={**first['metadata'],'source_sha256':cli.source_hashes(),'source_commit':cli.source_commit(),
           'started_at_utc':dt.datetime.now(dt.timezone.utc).isoformat(),'provider_request':copy.deepcopy(transport.PROVIDER),
           'prior_spent_or_reserved_usd':prior,'reservation_prices_per_million':{'prompt':'0.1','completion':'0.34'},
-          'source_results':str(source.relative_to(ROOT)),'excluded_pair':'ADV-01D: actual shown preview rejected by parser; both sides repeated after fix',
+          'source_results':[str(source.relative_to(ROOT)) for source in sources],'excluded_pair':args.repeat_case+': actual shown preview rejected by parser; both sides repeated after fix',
           'note':'Continuation only; completed valid first-stage observations retained separately. Shared $0.30 including unknown interrupted-request reservation. No retries of model failures.'}
     out.mkdir(parents=True);rows=[]
     try:

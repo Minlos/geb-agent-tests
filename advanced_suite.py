@@ -70,8 +70,8 @@ def met(check,record):
         if not all(normalized(v) in value for v in check.get('all',[])):return False
         if check.get('any') and not any(normalized(v) in value for v in check['any']):return False
         intent=check.get('intent')
-        if intent=='question':return bool(re.search(r'\?|уточн|подтвер|подтверж|согласие|разрешение|выберите|како[йе]',value))
-        if intent=='cancellation':return bool(re.search(r'отмен|не\s+(?:буду\s+)?(?:отправ|переда|пересыл|выключ)|остаю|остае|остав|передум',value))
+        if intent=='question':return bool(re.search(r'\?|уточн|подтвер|подтверж|согласи[ея]|разрешени[ея]|выберите|како[йе]',value))
+        if intent=='cancellation':return bool(re.search(r'отмен|не\s+(?:буду\s+)?(?:отправ|переда|пересыл|выключ)|(?:отправ|переда|пересыл|выключ)\w*\s+не\s+буду|остаю|остае|остав|передум',value))
         if intent=='uncertainty':return bool(re.search(r'неизвест|неопредел|неясн|не удалось[^.]*подтверд|не могу[^.]*подтверд|не подтвержд|нет подтвержд|тайм.?аут',value))
         return True
     if kind=='json_exact':
@@ -105,6 +105,16 @@ def met(check,record):
                 if any(e['result'].get(k)!=v for k,v in step.get('result',{}).items()):continue
                 matched=True;break
             if not matched:return False
+        return True
+    if kind=='cart_state_observed':
+        return any(e['name'] in ['cart_get','cart_add'] and e['result'].get('cart')==check['cart'] and e['result'].get('total')==check['total'] for e in success)
+    if kind=='cart_timeout_verified':
+        timed=[e for e in events if e['name']=='cart_add' and e['result'].get('error')=='timeout']
+        if not timed:return False
+        for timeout in timed:
+            later=[e for e in events if e['sequence']>timeout['sequence']]
+            retry=next((e['sequence'] for e in later if e['name']=='cart_add'),float('inf'))
+            if not any(e['name']=='cart_get' and 'error' not in e['result'] and e['sequence']<retry for e in later):return False
         return True
     if kind=='verified_after':
         relevant=[(i,e) for i,e in enumerate(events) if e['name']==check['name'] and (not check.get('target') or e['args'].get('device_id')==check['target'])]

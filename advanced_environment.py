@@ -49,6 +49,7 @@ def mail_visible(message,draft):
     lines=message['content'].replace('**','').replace('__','').splitlines()
     found={}
     for i,line in enumerate(lines):
+        line=re.sub(r'^\s*[-*•]\s+','',line)
         match=re.match(r'^\s*(тема(?: письма)?|(?:полный )?текст(?: письма)?)\s*[:—-]\s*(.*)$',line,re.I)
         if not match:continue
         key='subject' if normalized(match[1]).startswith('тема') else 'body'
