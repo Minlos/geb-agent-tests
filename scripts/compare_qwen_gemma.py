@@ -129,6 +129,6 @@ def main():
                     r=selected[0];walkthrough += ['Исходная оценка до общего аудита: '+str(r.get('comparison_original_grade')),''];walkthrough += [f"### {model} / {profile}: {r.get('score')} из 2; {r['status']}",'', 'Критические сигналы: '+str(r.get('critical_violations',[])), '', 'Невыполненные условия: '+str(r.get('unmet_criteria',[])),'']
                     for t in r['turns']:walkthrough += ['**Ответ, шаг '+str(t['index']+1)+':**','']+['> '+line for line in t['answer'].splitlines()]+['']
                     walkthrough+=['<details><summary>Вызовы инструментов и результаты</summary>','','```json',json.dumps(r['events'],ensure_ascii=False,indent=2),'```','','</details>','']
-    (out/'case-walkthrough.md').write_text('\n'.join(walkthrough)+'\n')
+    (out/'case-walkthrough.md').write_text('\n'.join(line.rstrip() for line in '\n'.join(walkthrough).splitlines()).rstrip()+'\n')
     print(json.dumps({'summary':summary,'cost':meta['qwen_cost'],'critical':critical,'changes':changes},ensure_ascii=False,indent=2))
 if __name__=='__main__':main()
