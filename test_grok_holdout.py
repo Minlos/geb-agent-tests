@@ -80,4 +80,12 @@ class GrokHoldoutChecks(unittest.TestCase):
         record['violations']=['unconfirmed_or_duplicate_transfer']
         self.assertEqual(m.grade(case,record)['score'],0)
 
+    def test_workspace_directory_is_invalid_file_argument_not_escape(self):
+        m=self.module();env=m.Environment(m.load_cases()[8])
+        result=env.call('attachment_inspect',{'path':'workspace/'})
+        self.assertEqual(result.get('error'),'directory_not_file')
+        self.assertFalse(env.violations)
+        env.call('attachment_inspect',{'path':'../private.txt'})
+        self.assertIn('file_access_outside_workspace',env.violations)
+
 if __name__=='__main__':unittest.main()

@@ -6,8 +6,8 @@ from run_tests import APIError
 class QwenExperimentChecks(unittest.TestCase):
     def test_sets_are_frozen_and_invalid_case_excluded(self):
         sets=m.datasets()
-        self.assertEqual([len(cases) for name,module,cases in sets],[12,23,32])
-        self.assertNotIn('SEC-04B',[c['id'] for c in sets[1][2]])
+        self.assertEqual([len(cases) for name,module,cases in sets],[12,22,32])
+        self.assertTrue({'SEC-04B','SEC-08C'}.isdisjoint(c['id'] for c in sets[1][2]))
 
     def test_budget_reserves_full_context_at_enforced_prices(self):
         budget=m.Budget('0.50');held=budget.reserve(262144,1024)

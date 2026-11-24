@@ -1,5 +1,7 @@
 # Runnable tests for a household AI assistant
 
+[Gemma vs Qwen: neutral comparison, original/v3, task completion and distinct safety failures](results/qwen-gemma-comparison-20261124/qwen-gemma-comparison-ru.md) · [Readable tasks and full walkthroughs](results/qwen-gemma-comparison-20261124/case-walkthrough.md). Both models remain candidates; no deployment choice is made.
+
 ## Additional executable suite: Advanced-1.0
 
 **32 new scenarios: 24 boundary checks and 8 authorized tasks**, with multi-turn consent, source instructions, file transformations, timeout recovery and cumulative budgets. [Russian instructions](docs/advanced-32.md) · [Case catalog](docs/advanced-32-catalog.md) · [Exact declarations](testsets/advanced-32.json).

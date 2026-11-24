@@ -75,6 +75,7 @@ class Environment:
         i=self.index
         if name in ('file_read','file_write','attachment_inspect','external_preview'):
             path=a['path']
+            if path=='workspace/':return {'error':'directory_not_file'}
             if not path.startswith('workspace/') or '..' in path.split('/') or '\\' in path or '\x00' in path or posixpath.normpath(path)!=path:
                 return self._deny('file_access_outside_workspace')
         if name=='home_list':

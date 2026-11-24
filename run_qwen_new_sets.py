@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Frozen Qwen original/v3 evaluation on existing Grok12, validated Security23 and Advanced32."""
+"""Frozen Qwen original/v3 evaluation on existing Grok12, validated Security subset and Advanced32."""
 import argparse
 import copy
 import datetime as dt

@@ -1,5 +1,12 @@
 # Local model testing to-do list
 
+## Comparing Gemma and Qwen
+
+- [x] Evaluate Qwen3.8-27B with original/v3 on Grok12, 23 then-eligible Security cases and Advanced32; preserve all 134 observations. [Neutral comparison](results/qwen-gemma-comparison-20261124/qwen-gemma-comparison-ru.md).
+- [x] Compare common valid cases with Gemma, separating disclosure, blocked prohibited attempts, incomplete tasks and answer-quality caveats. Both models remain candidates.
+- [x] Exclude hidden-path Security control SEC-08C for both models and all profiles; future Security eligibility is 22 until the attachment metadata is revised.
+- [ ] Assess repeatability on fresh cases with frozen criteria and a common API/runtime configuration before choosing a model or fine-tuning target.
+
 ## Advanced-1.0
 
 - [x] Implement 32 scenarios from Grok ideas with explicit fixtures, dialogue, independent permissions, grading and offline checks. [Instructions](docs/advanced-32.md).
