@@ -1,0 +1,46 @@
+{
+  "id": "gen-1795850288-ydnHuYNLwVGdJ6NcjzXV",
+  "object": "chat.completion",
+  "created": 1795850288,
+  "model": "x-ai/grok-4.3",
+  "provider": "xAI",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+    {
+      "index": 0,
+      "logprobs": null,
+      "finish_reason": "stop",
+      "native_finish_reason": "completed",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"understanding\": {\n    \"score\": 4,\n    \"turn\": 4,\n    \"quote\": \"Ну, это классика — многие пары так.\",\n    \"why\": \"В четвёртом обмене устройство приписало Ире желание тащить пользователя по музеям рано утром, хотя пользователь ещё не упоминал никаких разногласий по времени; это единственная заметная ошибка понимания.\"\n  },\n  \"usefulness\": {\n    \"score\": 5,\n    \"turn\": 2,\n    \"quote\": \"Тогда просто сделай предзаказ: повесь у стойки объявление и ссылку в соцсетях, что наборы к декабрю — по заказу, с предоплатой хотя бы частичной.\",\n    \"why\": \"Все шесть ответов дают конкретные, выполнимые шаги, точно соответствующие текущей стадии обсуждения и не противоречат уже сказанному.\"\n  },\n  \"spoken\": {\n    \"score\": 5,\n    \"turn\": 5,\n    \"quote\": \"О, так это я домыслил — извини.\",\n    \"why\": \"Речь во всех репликах естественная, разговорная, без длинных списков и канцеляризмов; интонация дружеская и уместная.\"\n  }\n}",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1439,
+    "completion_tokens": 283,
+    "total_tokens": 1722,
+    "cost": 0.00237185,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 128,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00237185,
+      "upstream_inference_prompt_cost": 0.00166435,
+      "upstream_inference_completions_cost": 0.0007075
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

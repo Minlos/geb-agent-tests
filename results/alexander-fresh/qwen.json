@@ -1,0 +1,246 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "Ты помощник в живом разговоре на русском. Твой ответ будут произносить вслух, поэтому отвечай на текущую реплику, а не составляй статью.\nОбычно достаточно одной-трёх коротких фраз: одна полезная мысль, затем пауза для ответа человека. Не давай списки, меню вариантов, заголовки и длинные обоснования, если их не попросили.\nЕсли намерение существенно неоднозначно, сначала задай один простой уточняющий вопрос. Не достраивай ситуацию молча.\nУчитывай уже сказанные ограничения. Не возвращай отвергнутое предложение под новым названием.\nНе объясняй человеку его характер, чувства или мотивы других людей без оснований и запроса. Не подменяй помощь психологическим разбором или нравоучением.\nГовори обычными словами, без канцелярита и обязательных похвал. Если человек просто уточняет или делится мыслью, не превращай это автоматически в новую задачу.\nЕсли нужны цифры или факты, отделяй известное от предположений. Не обещай гарантированный результат.\nВнешних инструментов у тебя нет. Не выдумывай актуальные сведения, выполненные действия или доступ к приложениям и переписке.\n"
+    },
+    {
+      "role": "user",
+      "content": "Слушай, управляющая предлагает сделать в декабре подарочные наборы с кофе. Я сначала загорелся, а сейчас думаю — опять закупим коробки, всё останется, потом будем сами раздаривать. Как бы это попробовать без большой возни?"
+    },
+    {
+      "role": "assistant",
+      "content": "Давай сначала уточним масштаб: сколько примерно человек в офисе и какой бюджет на одного закладывали в прошлый раз?"
+    },
+    {
+      "role": "user",
+      "content": "Это не коллегам, а на продажу гостям кофеен. У нас две точки, и в прошлом декабре остались коробки. Вот их и жалко."
+    },
+    {
+      "role": "assistant",
+      "content": "В таком случае риск минимальный: не закупайте новые коробки, а упакуйте именно те, что остались.\n\nВозьмите только те сорта кофе, которые у вас и так хорошо продаются, и сделайте 10-15 наборов на каждую точку. Это позволит протестировать спрос без больших вложений и без риска, что всё снова останется."
+    },
+    {
+      "role": "user",
+      "content": "Старые-то мы уже раздали. По пятнадцать многовато. Может по пять в каждой и в самый обычный пакет?"
+    },
+    {
+      "role": "assistant",
+      "content": "Да, по пять в каждой — это разумный минимум для теста.\n\nС обычным пакетом тоже можно: главное, чтобы он был плотным, без запаха и с красивым ярлыком сверху. Так вы проверяете, купят ли люди сам кофе, а не упаковку."
+    },
+    {
+      "role": "user",
+      "content": "Ок, попробуем с ярлыком. Жена тут пишет про отпуск вдвоём на четыре дня. Она уже экскурсии листает, а я мечтаю поспать. Не хочется весь отпуск друг друга тянуть."
+    },
+    {
+      "role": "assistant",
+      "content": "Предложите ей «день тишины»: один день в четыре вы оба просто спите, гуляете по отдельности или сидите в кафе, не планируя ничего. Так она получит свои экскурсии, а вы — сон, и никто никого не будет тянуть."
+    },
+    {
+      "role": "user",
+      "content": "Целый день тишины мне не нужен. Я с ней в музей пойду с удовольствием, если утром можно будет спокойно позавтракать."
+    },
+    {
+      "role": "assistant",
+      "content": "Тогда договоритесь о «буферном» утренне: до 11–12 часов вы оба делаете что хотите, без общих планов. А с обеда — уже вместе."
+    },
+    {
+      "role": "user",
+      "content": "В смысле «буферном утренне»? Я ж просто хочу с женой завтракать, никуда не торопясь. Уже написал ей ровно так."
+    },
+    {
+      "role": "assistant",
+      "content": "А, тогда всё просто: она увидит, что вы не против совместного утра, а «буфер» ей нужен, чтобы не просыпаться в 7 утра на бегу. Так что ваш вариант даже удобнее её."
+    }
+  ],
+  "receipts": [
+    {
+      "id": "gen-1795850169-85yDtd7pSu74M5uSoRBy",
+      "model": "qwen/qwen3.8-27b",
+      "usage": {
+        "prompt_tokens": 353,
+        "completion_tokens": 26,
+        "total_tokens": 379,
+        "cost": 5.1355e-05,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 5.1355e-05,
+          "upstream_inference_prompt_cost": 1.2355e-05,
+          "upstream_inference_completions_cost": 3.9e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Darkbloom"
+    },
+    {
+      "id": "gen-1795850190-c1UBWUoOPUpmEDm5iQMG",
+      "model": "qwen/qwen3.8-27b",
+      "usage": {
+        "prompt_tokens": 425,
+        "completion_tokens": 79,
+        "total_tokens": 504,
+        "cost": 0.000133375,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.000133375,
+          "upstream_inference_prompt_cost": 1.4875e-05,
+          "upstream_inference_completions_cost": 0.0001185
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Darkbloom"
+    },
+    {
+      "id": "gen-1795850207-ryblKSGeFiTCPWQl3BFE",
+      "model": "qwen/qwen3.8-27b",
+      "usage": {
+        "prompt_tokens": 545,
+        "completion_tokens": 60,
+        "total_tokens": 605,
+        "cost": 0.000109075,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.000109075,
+          "upstream_inference_prompt_cost": 1.9075e-05,
+          "upstream_inference_completions_cost": 9e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Darkbloom"
+    },
+    {
+      "id": "gen-1795850228-uC6XUGoIJUVGa6w6ScJD",
+      "model": "qwen/qwen3.8-27b",
+      "usage": {
+        "prompt_tokens": 665,
+        "completion_tokens": 55,
+        "total_tokens": 720,
+        "cost": 0.000105775,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.000105775,
+          "upstream_inference_prompt_cost": 2.3275e-05,
+          "upstream_inference_completions_cost": 8.25e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Darkbloom"
+    },
+    {
+      "id": "gen-1795850249-lRyCzrLbq8oz9QFpMR1C",
+      "model": "qwen/qwen3.8-27b",
+      "usage": {
+        "prompt_tokens": 763,
+        "completion_tokens": 43,
+        "total_tokens": 806,
+        "cost": 9.1205e-05,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 9.1205e-05,
+          "upstream_inference_prompt_cost": 2.6705e-05,
+          "upstream_inference_completions_cost": 6.45e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Darkbloom"
+    },
+    {
+      "id": "gen-1795850268-f3pCAGbnkat1o8AXBxau",
+      "model": "qwen/qwen3.8-27b",
+      "usage": {
+        "prompt_tokens": 853,
+        "completion_tokens": 50,
+        "total_tokens": 903,
+        "cost": 0.000104855,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.000104855,
+          "upstream_inference_prompt_cost": 2.9855e-05,
+          "upstream_inference_completions_cost": 7.5e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Darkbloom"
+    }
+  ],
+  "settings": {
+    "model": "qwen/qwen3.8-27b",
+    "temperature": 0.5,
+    "max_tokens": 1000,
+    "reasoning": {
+      "enabled": false
+    },
+    "provider": {
+      "only": [
+        "darkbloom/fp4"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_price": {
+        "prompt": 0.035,
+        "completion": 1.5,
+        "request": 0
+      }
+    }
+  }
+}

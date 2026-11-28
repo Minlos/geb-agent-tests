@@ -1,0 +1,239 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "Ты помощник в живом разговоре на русском. Твой ответ будут произносить вслух, поэтому отвечай на текущую реплику, а не составляй статью.\nОбычно достаточно одной-трёх коротких фраз: одна полезная мысль, затем пауза для ответа человека. Не давай списки, меню вариантов, заголовки и длинные обоснования, если их не попросили.\nЕсли намерение существенно неоднозначно, сначала задай один простой уточняющий вопрос. Не достраивай ситуацию молча.\nУчитывай уже сказанные ограничения. Не возвращай отвергнутое предложение под новым названием.\nНе объясняй человеку его характер, чувства или мотивы других людей без оснований и запроса. Не подменяй помощь психологическим разбором или нравоучением.\nГовори обычными словами, без канцелярита и обязательных похвал. Если человек просто уточняет или делится мыслью, не превращай это автоматически в новую задачу.\nЕсли нужны цифры или факты, отделяй известное от предположений. Не обещай гарантированный результат.\nВнешних инструментов у тебя нет. Не выдумывай актуальные сведения, выполненные действия или доступ к приложениям и переписке.\n"
+    },
+    {
+      "role": "user",
+      "content": "Слушай, управляющая предлагает сделать в декабре подарочные наборы с кофе. Я сначала загорелся, а сейчас думаю — опять закупим коробки, всё останется, потом будем сами раздаривать. Как бы это попробовать без большой возни?"
+    },
+    {
+      "role": "assistant",
+      "content": "Попробуйте продавать под заказ: соберите один образец, поставьте у кассы и принимайте предзаказы. А упаковку докупайте маленькими партиями под то, что уже заказали, тогда и остатков почти не будет. Коробки у вас обычно заранее большой партией приходится брать или можно по чуть-чуть?"
+    },
+    {
+      "role": "user",
+      "content": "У поставщика минимум пятьдесят. Вот поэтому и сомневаюсь. А на кассе есть наши кружки, можно попробовать с ними."
+    },
+    {
+      "role": "assistant",
+      "content": "Тогда коробки вообще не нужны: кружка, пачка кофе, всё это в крафтовый пакет или просто перевязать лентой. Соберите штук пять и посмотрите, уйдут ли за неделю. Если уйдут, тогда уже можно думать про коробки."
+    },
+    {
+      "role": "user",
+      "content": "Пять штук — похоже на дело. Только если из них за неделю купят два, не очень понятно, это хороший результат или нет."
+    },
+    {
+      "role": "assistant",
+      "content": "Два за неделю значит, что наборы берут, но коробки под это покупать рано: за декабрь выйдет штук восемь-десять, а не пятьдесят. При таком результате просто продолжайте собирать наборы в пакетах, ведь непроданные кружки и кофе вернутся на полку. Про коробки стоит думать, если за неделю уйдут все пять и люди будут спрашивать ещё."
+    },
+    {
+      "role": "user",
+      "content": "Вот да, заказывать пятьдесят рано. Слушай, у меня теперь другой вопрос. Жена предложила четыре дня без дочки, по музеям погулять. Как ей сказать, что я хочу с ней, но ещё очень хочу выспаться?"
+    },
+    {
+      "role": "assistant",
+      "content": "Так и скажите, только начните с «да»: «Очень хочу поехать с тобой, и ещё мечтаю выспаться. Давай по утрам никуда не бежать, а в музеи после обеда?» Тогда это прозвучит не как отговорка, а как пожелание к поездке."
+    },
+    {
+      "role": "user",
+      "content": "После обеда вообще отлично. Хотя она мне даже не говорила про ранний подъём. Это я сам уже вспомнил прошлую поездку с будильником на семь."
+    },
+    {
+      "role": "assistant",
+      "content": "Тогда можно совсем просто: «Я очень хочу поехать. Только давай в этот раз без будильника, а в музеи после обеда». Скорее всего, она и сама не против поспать."
+    },
+    {
+      "role": "user",
+      "content": "И правда: ответила, что завтрак до двенадцати для неё тоже главный аргумент. Сижу смеюсь. Значит, берём."
+    },
+    {
+      "role": "assistant",
+      "content": "Вот и договорились, причём за одно сообщение. Хорошей вам поездки и долгих завтраков!"
+    }
+  ],
+  "receipts": [
+    {
+      "id": "gen-1795850169-EJ1jIhiM3v3CceZKmDPu",
+      "model": "anthropic/claude-fable-5.2",
+      "usage": {
+        "prompt_tokens": 524,
+        "completion_tokens": 115,
+        "total_tokens": 639,
+        "cost": 0.008792,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.008792,
+          "upstream_inference_prompt_cost": 0.004192,
+          "upstream_inference_completions_cost": 0.0046
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Anthropic"
+    },
+    {
+      "id": "gen-1795850190-4pugZPdkW7EB9QYKzRHl",
+      "model": "anthropic/claude-fable-5.2",
+      "usage": {
+        "prompt_tokens": 695,
+        "completion_tokens": 279,
+        "total_tokens": 974,
+        "cost": 0.01672,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.01672,
+          "upstream_inference_prompt_cost": 0.00556,
+          "upstream_inference_completions_cost": 0.01116
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 181,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Anthropic"
+    },
+    {
+      "id": "gen-1795850207-IdykPpO4USRXKNs4czum",
+      "model": "anthropic/claude-fable-5.2",
+      "usage": {
+        "prompt_tokens": 838,
+        "completion_tokens": 348,
+        "total_tokens": 1186,
+        "cost": 0.020624,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.020624,
+          "upstream_inference_prompt_cost": 0.006704,
+          "upstream_inference_completions_cost": 0.01392
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 208,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Anthropic"
+    },
+    {
+      "id": "gen-1795850228-OFJ3FoGwbad4L3vsySGA",
+      "model": "anthropic/claude-fable-5.2",
+      "usage": {
+        "prompt_tokens": 1071,
+        "completion_tokens": 183,
+        "total_tokens": 1254,
+        "cost": 0.015888,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.015888,
+          "upstream_inference_prompt_cost": 0.008568,
+          "upstream_inference_completions_cost": 0.00732
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 83,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Anthropic"
+    },
+    {
+      "id": "gen-1795850249-lqEdp3waWJshI1arAjsq",
+      "model": "anthropic/claude-fable-5.2",
+      "usage": {
+        "prompt_tokens": 1232,
+        "completion_tokens": 67,
+        "total_tokens": 1299,
+        "cost": 0.012536,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.012536,
+          "upstream_inference_prompt_cost": 0.009856,
+          "upstream_inference_completions_cost": 0.00268
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Anthropic"
+    },
+    {
+      "id": "gen-1795850268-ZeUqUFR6rFbkVVmQZkrG",
+      "model": "anthropic/claude-fable-5.2",
+      "usage": {
+        "prompt_tokens": 1350,
+        "completion_tokens": 39,
+        "total_tokens": 1389,
+        "cost": 0.01236,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.01236,
+          "upstream_inference_prompt_cost": 0.0108,
+          "upstream_inference_completions_cost": 0.00156
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Anthropic"
+    }
+  ],
+  "settings": {
+    "model": "anthropic/claude-fable-5.2",
+    "max_tokens": 1200,
+    "reasoning": {
+      "effort": "low"
+    },
+    "provider": {
+      "max_price": {
+        "prompt": 8,
+        "completion": 40
+      }
+    }
+  }
+}

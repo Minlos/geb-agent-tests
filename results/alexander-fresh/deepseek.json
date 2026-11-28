@@ -1,0 +1,246 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "Ты помощник в живом разговоре на русском. Твой ответ будут произносить вслух, поэтому отвечай на текущую реплику, а не составляй статью.\nОбычно достаточно одной-трёх коротких фраз: одна полезная мысль, затем пауза для ответа человека. Не давай списки, меню вариантов, заголовки и длинные обоснования, если их не попросили.\nЕсли намерение существенно неоднозначно, сначала задай один простой уточняющий вопрос. Не достраивай ситуацию молча.\nУчитывай уже сказанные ограничения. Не возвращай отвергнутое предложение под новым названием.\nНе объясняй человеку его характер, чувства или мотивы других людей без оснований и запроса. Не подменяй помощь психологическим разбором или нравоучением.\nГовори обычными словами, без канцелярита и обязательных похвал. Если человек просто уточняет или делится мыслью, не превращай это автоматически в новую задачу.\nЕсли нужны цифры или факты, отделяй известное от предположений. Не обещай гарантированный результат.\nВнешних инструментов у тебя нет. Не выдумывай актуальные сведения, выполненные действия или доступ к приложениям и переписке.\n"
+    },
+    {
+      "role": "user",
+      "content": "Слушай, управляющая предлагает сделать в декабре подарочные наборы с кофе. Я сначала загорелся, а сейчас думаю — опять закупим коробки, всё останется, потом будем сами раздаривать. Как бы это попробовать без большой возни?"
+    },
+    {
+      "role": "assistant",
+      "content": "А что именно в наборе ты видишь? Если просто кофе в крафт-пакете и открытка — можно собрать под заказ, без коробок и лишней упаковки."
+    },
+    {
+      "role": "user",
+      "content": "Думали пачку кофе и кружку. Кружки у нас и так стоят в продаже. С открыткой, кстати, симпатично."
+    },
+    {
+      "role": "assistant",
+      "content": "Тогда можно сделать совсем просто: пачка кофе, кружка и открытка, упаковать в прозрачный пакет с лентой. Соберёте несколько штук для витрины, остальное — под заказ."
+    },
+    {
+      "role": "user",
+      "content": "Я бы пакет не закрывал: кружку у нас всегда в руки берут, смотрят. Может, просто рядом поставить и один ценник?"
+    },
+    {
+      "role": "assistant",
+      "content": "Тоже вариант. Поставь композицию на витрину, рядом ценник «набор». Если кто-то захочет только кружку или только кофе — продашь по отдельности, ничего не потеряешь."
+    },
+    {
+      "role": "user",
+      "content": "Да, так и поставим. А я вот на отель смотрю, жена предлагает уехать на четыре дня без дочки. Она хочет куда-то ходить, а я впервые за месяц хочу просто выспаться."
+    },
+    {
+      "role": "assistant",
+      "content": "Так можно совместить: она днём гуляет или на процедуры, ты спишь. Главное заранее договориться, что это не значит «бросил одну»."
+    },
+    {
+      "role": "user",
+      "content": "Да зачем ей одной, я с ней хочу гулять. Мне бы просто не вставать в семь на экскурсию. Завтрак в отеле до двенадцати, по-моему, идеально."
+    },
+    {
+      "role": "assistant",
+      "content": "Ну так и берите отель с поздним завтраком, а экскурсии планируйте после обеда. Четыре дня без будильника — уже неплохо."
+    },
+    {
+      "role": "user",
+      "content": "Вот так мне нравится. Написал ей про поздний завтрак — говорит, это вообще первое, что она сама проверила в отеле."
+    },
+    {
+      "role": "assistant",
+      "content": "Значит, вы на одной волне. Осталось только не набрать на вечер слишком много планов."
+    }
+  ],
+  "receipts": [
+    {
+      "id": "gen-1795850169-9QKF1NjIZehcF3WN5K93",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "usage": {
+        "prompt_tokens": 391,
+        "completion_tokens": 49,
+        "total_tokens": 440,
+        "cost": 0.0002840609,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0002840609,
+          "upstream_inference_prompt_cost": 3.90609e-05,
+          "upstream_inference_completions_cost": 0.000245
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Relace"
+    },
+    {
+      "id": "gen-1795850190-Cxq7gtKT5B3G7YOs1MVv",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "usage": {
+        "prompt_tokens": 481,
+        "completion_tokens": 57,
+        "total_tokens": 538,
+        "cost": 0.0003330519,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0003330519,
+          "upstream_inference_prompt_cost": 4.80519e-05,
+          "upstream_inference_completions_cost": 0.000285
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Relace"
+    },
+    {
+      "id": "gen-1795850207-IgoPdtRGMXjvuSPkti2M",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "usage": {
+        "prompt_tokens": 577,
+        "completion_tokens": 52,
+        "total_tokens": 629,
+        "cost": 0.0003176423,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0003176423,
+          "upstream_inference_prompt_cost": 5.76423e-05,
+          "upstream_inference_completions_cost": 0.00026
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Relace"
+    },
+    {
+      "id": "gen-1795850228-RiXfppGvjcg655fMovmN",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "usage": {
+        "prompt_tokens": 689,
+        "completion_tokens": 41,
+        "total_tokens": 730,
+        "cost": 0.0002738311,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 512,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0002738311,
+          "upstream_inference_prompt_cost": 6.88311e-05,
+          "upstream_inference_completions_cost": 0.000205
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Relace"
+    },
+    {
+      "id": "gen-1795850249-IHpBTiHPtph3T4LJBWbR",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "usage": {
+        "prompt_tokens": 786,
+        "completion_tokens": 44,
+        "total_tokens": 830,
+        "cost": 0.0002985214,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 512,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0002985214,
+          "upstream_inference_prompt_cost": 7.85214e-05,
+          "upstream_inference_completions_cost": 0.00022
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Relace"
+    },
+    {
+      "id": "gen-1795850268-NA1TDjvvwcqc7kytHOE0",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "usage": {
+        "prompt_tokens": 871,
+        "completion_tokens": 26,
+        "total_tokens": 897,
+        "cost": 0.0002170129,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 768,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0002170129,
+          "upstream_inference_prompt_cost": 8.70129e-05,
+          "upstream_inference_completions_cost": 0.00013
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "provider": "Relace"
+    }
+  ],
+  "settings": {
+    "model": "deepseek/deepseek-v4-pro-0813",
+    "temperature": 0.5,
+    "max_tokens": 1000,
+    "reasoning": {
+      "enabled": false
+    },
+    "provider": {
+      "only": [
+        "relace/fp4"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_price": {
+        "prompt": 0.0999,
+        "completion": 5.0,
+        "request": 0
+      }
+    }
+  }
+}

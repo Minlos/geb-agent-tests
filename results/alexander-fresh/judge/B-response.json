@@ -1,0 +1,46 @@
+{
+  "id": "gen-1795850288-vSCninq6JVdZMaIGSzUr",
+  "object": "chat.completion",
+  "created": 1795850288,
+  "model": "x-ai/grok-4.3",
+  "provider": "xAI",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+    {
+      "index": 0,
+      "logprobs": null,
+      "finish_reason": "stop",
+      "native_finish_reason": "completed",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"understanding\": {\n    \"score\": 4,\n    \"turn\": 4,\n    \"quote\": \"Так и скажите, только начните с «да»\",\n    \"why\": \"В четвёртом обмене устройство правильно уловило смену темы и ограничение «хочу с женой, но хочу выспаться», однако в первом обмене не уточнило, можно ли продавать кружки без коробок, хотя пользователь уже упомянул кружки.\"\n  },\n  \"usefulness\": {\n    \"score\": 5,\n    \"turn\": 3,\n    \"quote\": \"Два за неделю значит, что наборы берут, но коробки под это покупать рано\",\n    \"why\": \"На протяжении всех обменов устройство даёт конкретные, выполнимые шаги: предзаказы, тестовые пять наборов, формулировка сообщения жене, и каждый совет соответствует уже озвученным ограничениям.\"\n  },\n  \"spoken\": {\n    \"score\": 5,\n    \"turn\": 6,\n    \"quote\": \"Вот и договорились, причём за одно сообщение. Хорошей вам поездки и долгих завтраков!\",\n    \"why\": \"Речь естественная, тёплая, без канцелярита; каждое сообщение содержит одну ясную мысль и легко произносится вслух.\"\n  }\n}",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1272,
+    "completion_tokens": 295,
+    "total_tokens": 1567,
+    "cost": 0.0019243,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 384,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.0019243,
+      "upstream_inference_prompt_cost": 0.0011868,
+      "upstream_inference_completions_cost": 0.0007375
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}
