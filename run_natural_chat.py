@@ -6,6 +6,7 @@ from decimal import Decimal
 import hashlib
 import json
 import os
+import subprocess
 from pathlib import Path
 import urllib.error
 import urllib.request
@@ -27,7 +28,7 @@ def reserve(state,model):
     state['spent_or_reserved_usd']=str(spent+amount);return amount
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--turns',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--retry',choices=list(MODELS));args=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--turns',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--retry',choices=list(MODELS));p.add_argument('--transport',choices=['urllib','curl'],default='urllib');args=p.parse_args()
     key=os.environ.get('OPENROUTER_API_KEY')
     if not key:raise SystemExit('Configure key in environment')
     turns=json.loads(args.turns.read_text())
@@ -43,7 +44,7 @@ def main():
         chat=state['conversations'][model]
         if args.retry==model:
             if chat['status']!='error' or chat['messages'][-1]!={'role':'user','content':user}:raise SystemExit('Retry requires exact interrupted user turn')
-            chat.setdefault('error_history',[]).append({'error':chat.get('error'),'turn':sum(m['role']=='user' for m in chat['messages']),'note':'Manual identical retry; previous reservation retained'})
+            chat.setdefault('error_history',[]).append({'error':chat.get('error'),'diagnostic':chat.get('transport_diagnostic'),'turn':sum(m['role']=='user' for m in chat['messages']),'note':'Manual identical retry; previous reservation retained'})
         elif chat['status']!='ready':raise SystemExit('Prior request not completed; no automatic retry')
         held=reserve(state,model)
         if args.retry!=model:chat['messages'].append({'role':'user','content':user})
@@ -53,7 +54,24 @@ def main():
         class NoRedirect(urllib.request.HTTPRedirectHandler):
             def redirect_request(self,req,fp,code,msg,headers,newurl):return None
         try:
-            with urllib.request.build_opener(NoRedirect).open(request,timeout=120) as response:data=json.load(response)
+            if args.transport=='curl':
+                for connection_attempt in range(5):
+                    proc=subprocess.run(['curl','--ipv4','--http1.1','--silent','--show-error','--connect-timeout','15','--max-time','180','--request','POST','--header','@-','--data-binary',json.dumps(body,ensure_ascii=False),'--write-out','\n%{http_code}','https://openrouter.ai/api/v1/chat/completions'],input=('Content-Type: application/json\nAuthorization: Bearer '+key+'\n').encode(),capture_output=True)
+                    if not proc.returncode:break
+                    diagnostic=proc.stderr.decode(errors='replace').replace(key,'[REDACTED]')[:500]
+                    before_http=proc.returncode in (6,7) or proc.returncode==35 and 'SSL_connect' in diagnostic or proc.returncode==28 and 'SSL connection timeout' in diagnostic
+                    chat.setdefault('connection_failures',[]).append({'exit_code':proc.returncode,'before_http':before_http,'diagnostic':diagnostic})
+                    if not before_http or connection_attempt==4:
+                        chat['curl_exit_code']=proc.returncode;chat['transport_diagnostic']=diagnostic
+                        if before_http:
+                            state['spent_or_reserved_usd']=str(Decimal(state['spent_or_reserved_usd'])-held)
+                            chat.setdefault('released_reservations',[]).append({'amount':str(held),'reason':'Connection failed before HTTP request'})
+                        raise OSError('curl transport code '+str(proc.returncode))
+                content,status=proc.stdout.rsplit(b'\n',1);chat['http_status']=int(status)
+                if status!=b'200':raise ValueError('Unexpected HTTP status')
+                data=json.loads(content)
+            else:
+                with urllib.request.build_opener(NoRedirect).open(request,timeout=300) as response:data=json.load(response)
             usage=data.get('usage') or {};cost=usage.get('cost')
             if cost is not None:
                 actual=Decimal(str(cost))
@@ -61,7 +79,7 @@ def main():
                 state['spent_or_reserved_usd']=str(Decimal(state['spent_or_reserved_usd'])-held+actual)
             choice=data['choices'][0];message=choice['message']
             chat['responses'].append({'id':data.get('id'),'model':data.get('model'),'provider':data.get('provider'),
-                'usage':usage,'finish_reason':choice.get('finish_reason'),'message':message,'reserved_max_usd':str(held),
+                'usage':usage,'finish_reason':choice.get('finish_reason'),'message':message,'reserved_max_usd':str(held),'transport':args.transport,'driver_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                 'request_settings':{k:v for k,v in body.items() if k!='messages'}})
             if not isinstance(message.get('content'),str) or message.get('tool_calls'):raise ValueError('Expected ordinary text chat')
             chat['messages'].append({'role':'assistant','content':message['content']})
@@ -69,7 +87,7 @@ def main():
             save();print('\n### '+model+'\n'+message['content'],flush=True)
         except urllib.error.HTTPError as exc:
             chat['status']='error';chat['error']='HTTP '+str(exc.code)+'; reservation retained';exc.close();save();raise SystemExit(chat['error']) from None
-        except (urllib.error.URLError,TimeoutError,OSError,ValueError,KeyError,IndexError,TypeError):
-            chat['status']='error';chat['error']='Transport/schema/cost error; no automatic retry';save();raise SystemExit(chat['error']) from None
+        except (urllib.error.URLError,TimeoutError,OSError,ValueError,KeyError,IndexError,TypeError) as exc:
+            chat['status']='error';chat['error']='Transport/schema/cost error; no automatic retry';chat['error_class']=type(exc).__name__;save();raise SystemExit(chat['error']) from None
     print('\nSpent/reserved USD: '+state['spent_or_reserved_usd'],flush=True)
 if __name__=='__main__':main()

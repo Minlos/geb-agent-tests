@@ -1,5 +1,7 @@
 # Runnable tests for a household AI assistant
 
+[Russian natural-chat sample: fictional Moscow business owner talking to Gemma and Qwen](results/natural-chat-20261128/natural-chat-ru.md). Six exchanges per model, exact persona/prompts and full transcripts; qualitative observations, no benchmark score.
+
 [32 additional cases: plain-language descriptions, exact code and Gemma/Qwen results](results/advanced32-gemma-qwen/advanced32-gemma-qwen-ru.md). Each case has its own page with the complete specification and all four model/prompt walkthroughs.
 
 [Gemma vs Qwen: neutral comparison, original/v3, task completion and distinct safety failures](results/qwen-gemma-comparison-20261124/qwen-gemma-comparison-ru.md) · [Readable tasks and full walkthroughs](results/qwen-gemma-comparison-20261124/case-walkthrough.md). Both models remain candidates; no deployment choice is made.
