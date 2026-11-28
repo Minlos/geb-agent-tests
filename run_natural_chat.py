@@ -1,0 +1,75 @@
+#!/usr/bin/env python3
+"""One adaptive Russian user turn per selected model, with persistent shared budget."""
+import argparse
+import datetime as dt
+from decimal import Decimal
+import hashlib
+import json
+import os
+from pathlib import Path
+import urllib.error
+import urllib.request
+ROOT=Path(__file__).resolve().parent
+MODELS={'gemma':{'id':'google/gemma-4-31b-it','provider':'coreweave/fp4','prompt':'0.1','completion':'0.34'},
+        'qwen':{'id':'qwen/qwen3.8-27b','provider':'darkbloom/fp4','prompt':'0.035','completion':'1.5'}}
+
+def payload(model,messages):
+    spec=MODELS[model]
+    return {'model':spec['id'],'messages':messages,'temperature':0.5,'max_tokens':1000,
+            'reasoning':{'enabled':False},'provider':{'only':[spec['provider']],'allow_fallbacks':False,
+            'require_parameters':True,'max_price':{'prompt':float(spec['prompt']),'completion':float(spec['completion']),'request':0}}}
+
+def reserve(state,model):
+    spec=MODELS[model]
+    amount=(Decimal(262144)*Decimal(spec['prompt'])+Decimal(1000)*Decimal(spec['completion']))/1000000
+    spent=Decimal(state['spent_or_reserved_usd'])
+    if spent+amount>Decimal(state['cap_usd']):raise ValueError('Shared cap exhausted before request')
+    state['spent_or_reserved_usd']=str(spent+amount);return amount
+
+def main():
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--turns',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--retry',choices=list(MODELS));args=p.parse_args()
+    key=os.environ.get('OPENROUTER_API_KEY')
+    if not key:raise SystemExit('Configure key in environment')
+    turns=json.loads(args.turns.read_text())
+    if not turns or set(turns)-set(MODELS) or any(not isinstance(v,str) or not v.strip() for v in turns.values()):raise SystemExit('Invalid user turns')
+    prompt=(ROOT/'prompts/natural-chat-assistant-v1.txt').read_text();persona=json.loads((ROOT/'personas/moscow-business-owner-v1.json').read_text())
+    args.output.mkdir(parents=True,exist_ok=True);path=args.output/'state.json'
+    state=json.loads(path.read_text()) if path.exists() else {'started_at_utc':dt.datetime.now(dt.timezone.utc).isoformat(),
+        'cap_usd':'0.30','spent_or_reserved_usd':'0','persona':persona,'assistant_prompt':prompt,'models':MODELS,
+        'source_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'conversations':{m:{'messages':[{'role':'system','content':prompt}],'responses':[],'status':'ready'} for m in MODELS}}
+    assert state['assistant_prompt']==prompt and state['persona']==persona,'Do not change prompts mid-dialogue'
+    def save():path.write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n')
+    for model,user in turns.items():
+        chat=state['conversations'][model]
+        if args.retry==model:
+            if chat['status']!='error' or chat['messages'][-1]!={'role':'user','content':user}:raise SystemExit('Retry requires exact interrupted user turn')
+            chat.setdefault('error_history',[]).append({'error':chat.get('error'),'turn':sum(m['role']=='user' for m in chat['messages']),'note':'Manual identical retry; previous reservation retained'})
+        elif chat['status']!='ready':raise SystemExit('Prior request not completed; no automatic retry')
+        held=reserve(state,model)
+        if args.retry!=model:chat['messages'].append({'role':'user','content':user})
+        chat['status']='pending';save()
+        body=payload(model,chat['messages'])
+        request=urllib.request.Request('https://openrouter.ai/api/v1/chat/completions',json.dumps(body,ensure_ascii=False).encode(),headers={'Content-Type':'application/json','Authorization':'Bearer '+key})
+        class NoRedirect(urllib.request.HTTPRedirectHandler):
+            def redirect_request(self,req,fp,code,msg,headers,newurl):return None
+        try:
+            with urllib.request.build_opener(NoRedirect).open(request,timeout=120) as response:data=json.load(response)
+            usage=data.get('usage') or {};cost=usage.get('cost')
+            if cost is not None:
+                actual=Decimal(str(cost))
+                if not actual.is_finite() or not 0<=actual<=held:raise ValueError('Reported cost outside reserve')
+                state['spent_or_reserved_usd']=str(Decimal(state['spent_or_reserved_usd'])-held+actual)
+            choice=data['choices'][0];message=choice['message']
+            chat['responses'].append({'id':data.get('id'),'model':data.get('model'),'provider':data.get('provider'),
+                'usage':usage,'finish_reason':choice.get('finish_reason'),'message':message,'reserved_max_usd':str(held),
+                'request_settings':{k:v for k,v in body.items() if k!='messages'}})
+            if not isinstance(message.get('content'),str) or message.get('tool_calls'):raise ValueError('Expected ordinary text chat')
+            chat['messages'].append({'role':'assistant','content':message['content']})
+            chat['status']='ready' if choice.get('finish_reason')=='stop' else 'response_limit_or_unexpected_finish'
+            save();print('\n### '+model+'\n'+message['content'],flush=True)
+        except urllib.error.HTTPError as exc:
+            chat['status']='error';chat['error']='HTTP '+str(exc.code)+'; reservation retained';exc.close();save();raise SystemExit(chat['error']) from None
+        except (urllib.error.URLError,TimeoutError,OSError,ValueError,KeyError,IndexError,TypeError):
+            chat['status']='error';chat['error']='Transport/schema/cost error; no automatic retry';save();raise SystemExit(chat['error']) from None
+    print('\nSpent/reserved USD: '+state['spent_or_reserved_usd'],flush=True)
+if __name__=='__main__':main()
