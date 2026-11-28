@@ -1,0 +1,26 @@
+{
+  "summary": {
+    "gemma": {
+      "answers": 6,
+      "first_words_before": 204,
+      "first_words_now": 13,
+      "max_words_before": 204,
+      "max_words_now": 31
+    },
+    "qwen": {
+      "answers": 6,
+      "first_words_before": 335,
+      "first_words_now": 46,
+      "max_words_before": 363,
+      "max_words_now": 56
+    }
+  },
+  "known_cost_usd": "0.001246395",
+  "series_budget": {
+    "cap_usd": "0.30",
+    "spent_or_reserved_usd": "0.1908900433",
+    "initial_spent_or_reserved_usd": "0.106058635",
+    "prior_source": "runs/natural-chat-20261128/state.json",
+    "prior_sha256": "597fce59f378f639a30acd0b53ff34eb380a23f98ccdab5299910c852fdbe767"
+  }
+}

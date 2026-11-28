@@ -1,0 +1,32 @@
+{
+  "deepseek": {
+    "responses": 6,
+    "words_per_answer": [
+      13,
+      31,
+      27,
+      27,
+      33,
+      17
+    ],
+    "max_words": 33,
+    "mean_words": 24.666666666666668,
+    "cost_usd": "0.0018758937",
+    "reasoning_tokens": 0
+  },
+  "glm": {
+    "responses": 6,
+    "words_per_answer": [
+      21,
+      35,
+      46,
+      44,
+      34,
+      29
+    ],
+    "max_words": 46,
+    "mean_words": 34.833333333333336,
+    "cost_usd": "0.0008472351",
+    "reasoning_tokens": 46
+  }
+}
