@@ -1,0 +1,46 @@
+{
+  "id": "gen-1795849087-qApt4xSvQI3I3mC9QKrC",
+  "object": "chat.completion",
+  "created": 1795849087,
+  "model": "x-ai/grok-4.3",
+  "provider": "xAI",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+    {
+      "index": 0,
+      "logprobs": null,
+      "finish_reason": "stop",
+      "native_finish_reason": "completed",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"understanding\": {\n    \"score\": 4,\n    \"turn\": 4,\n    \"quote\": \"Скажи, что ты очень хочешь поехать, но твоя идеальная поездка — это тишина и сон, а её — активность.\",\n    \"why\": \"В первых трёх обменах устройство точно улавливает ограничения и уточнения по тестовому тиражу, но в четвёртом обмене приписывает пользователю желание «поехать», хотя он лишь обсуждает, как сформулировать свои предпочтения.\"\n  },\n  \"usefulness\": {\n    \"score\": 5,\n    \"turn\": 3,\n    \"quote\": \"Просто поставь эти десять наборов на видное место, например, у кассы, с короткой надписью «подарочный набор».\",\n    \"why\": \"Все шесть ответов дают конкретные, выполнимые шаги, соответствующие текущей ситуации и ограничениям пользователя.\"\n  },\n  \"spoken\": {\n    \"score\": 4,\n    \"turn\": 5,\n    \"quote\": \"Тогда предложи ей «ленивый» формат: проснуться без будильника, позавтракать не спеша, а потом просто гулять по городу без жёсткого плана.\",\n    \"why\": \"Речь в целом естественная, но в пятом ответе длинное предложение с несколькими действиями, которые лучше было бы разделить на две фразы.\"\n  }\n}",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1355,
+    "completion_tokens": 322,
+    "total_tokens": 1677,
+    "cost": 0.00236435,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 128,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00236435,
+      "upstream_inference_prompt_cost": 0.00155935,
+      "upstream_inference_completions_cost": 0.000805
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

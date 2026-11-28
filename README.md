@@ -199,3 +199,5 @@ Grok-authored security screen: [24 ideas and declarations](testsets/grok-securit
 Advanced Grok ideation: [32 new drafts and reviewed revisions](docs/grok-advanced-cases.md). These are scenario specifications with unresolved semantic issues, not runnable/validated tests; no model scores include them.
 
 Natural Russian dialogue: [Alexander, short-reply prompt, Gemma and Qwen](results/natural-chat-alexander-oral-v2-20261128/oral-replay-ru.md); [DeepSeek V4 Pro 0813 and GLM‑5.3, six exchanges each](results/natural-chat-frontier-20261128/comparison-ru.md). Exact prompts, messages and API receipts are included. [Russian hardware cost estimate](results/natural-chat-frontier-20261128/hardware-cost-ru.md) distinguishes CPU experiments from GPU capacity and measured performance. [Additional personas](results/natural-chat-additional-20261128/README.md) are retained as unfinished two-exchange drafts.
+
+[Russian home voice assistant scores across four models and reusable API judge requests](results/home-speaker-score/README.md).

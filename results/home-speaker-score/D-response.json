@@ -1,0 +1,46 @@
+{
+  "id": "gen-1795849087-68CgxxRYBbHmWYfuno3u",
+  "object": "chat.completion",
+  "created": 1795849087,
+  "model": "x-ai/grok-4.3",
+  "provider": "xAI",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+    {
+      "index": 0,
+      "logprobs": null,
+      "finish_reason": "stop",
+      "native_finish_reason": "completed",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"understanding\": {\n    \"score\": 4,\n    \"turn\": 4,\n    \"quote\": \"Попробуй сделать акцент на том, что ты за идею, но тебе нужен особый режим отдыха.\",\n    \"why\": \"В целом верно понял смену темы и намерение, но в 4-м обмене не учёл, что пользователь хочет именно совместный отдых, а не «время тишины» в одиночестве.\"\n  },\n  \"usefulness\": {\n    \"score\": 3,\n    \"turn\": 4,\n    \"quote\": \"Скажи, что ты с радостью поедешь, если договоритесь о «времени тишины», когда тебя можно не беспокоить.\",\n    \"why\": \"Совет в 4-м обмене не соответствует реальному желанию пользователя (проводить время вместе), а в 5-м и 6-м уже даёт уместные формулировки.\"\n  },\n  \"spoken\": {\n    \"score\": 5,\n    \"turn\": 1,\n    \"quote\": \"Может, стоит попробовать формат предзаказа? Собрать заявки, чтобы закупить ровно столько, сколько нужно.\",\n    \"why\": \"Все реплики звучат естественно, без канцелярита, с живой интонацией и одной мыслью за раз.\"\n  }\n}",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1093,
+    "completion_tokens": 290,
+    "total_tokens": 1383,
+    "cost": 0.00195685,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 128,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00195685,
+      "upstream_inference_prompt_cost": 0.00123185,
+      "upstream_inference_completions_cost": 0.000725
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

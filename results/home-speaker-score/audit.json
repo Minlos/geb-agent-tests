@@ -1,0 +1,6 @@
+{
+  "A": {"model":"GLM-5.3","scores":[4,4,4]},
+  "B": {"model":"Qwen3.8-27B","scores":[3,4,3]},
+  "C": {"model":"DeepSeek V4 Pro 0813","scores":[4,3,4]},
+  "D": {"model":"Gemma 4 31B","scores":[5,3,4]}
+}
